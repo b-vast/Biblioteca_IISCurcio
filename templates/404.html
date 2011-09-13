@@ -1,0 +1,24 @@
+{% extends "biblioteca/layout.html" %}
+
+{% block content %}
+
+    <div class='errorbox'>
+        <div class='content'>
+            <h3>Impossibile trovare la pagina.</h3>
+            <p>
+                La pagina richiesta non &egrave; stata trovata.
+                Questo errore &egrave; dovuto, in genere, a:
+                <ul>
+                    <li>la richiesta di un'oggetto inesistente</li>
+                    <li>un'errore di battitura dell'URL</li>
+                    <li>un link "rotto"</li>
+                </ul>
+            </p>
+            <a href='javascript:void(0)'
+                onclick='window.history.back()'>&laquo; Indietro</a>
+        </div>
+    </div>
+{% endblock %}
+
+
+

@@ -1,0 +1,179 @@
+{% extends "biblioteca/layout.html" %}
+
+{% block head %}
+    <link rel='stylesheet' type='text/css' href='/static/css/app/edizione/modifica.css'>
+
+    <script type='text/javascript' src='/static/js/jquery.formset.js'></script>
+    <script type='text/javascript'>
+
+        function toggleNote(pos) {
+            var textarea = $("#id_copie-"+pos+"-note");
+
+            if( textarea.attr('readonly') == false )
+                textarea
+                    .attr('readonly', 'true')
+                    .addClass('readonly');
+            else
+                textarea
+                    .attr('readonly', '')
+                    .removeClass('readonly');
+        }
+
+        $(function() {
+            $("#tabella-autori tbody tr").formset({
+                 prefix:        '{{ formset_autori.prefix }}'
+                ,formCssClass:  'dynamic-formset1'
+                ,addText:       '<img src="/static/img/list-add.png"> Aggiungi'
+                ,deleteText:    '<img src="/static/img/list-remove.png"> Rimuovi'
+                ,added:         function(row) { $(row).find('.errors').remove(); }
+            });
+            $("#copie .copia").formset({
+                 prefix:        '{{ formset_copie.prefix }}'
+                ,formCssClass:  'dynamic-formset2'
+                ,addText:       '<img src="/static/img/list-add.png"> Aggiungi'
+                ,deleteText:    '<img src="/static/img/list-remove.png"> Rimuovi'
+                ,added:         function(row) {
+                                    $(row)
+                                        .removeClass('invalid')
+                                        .find('.errors').remove();
+                                }
+            });
+        });
+    </script>
+
+{% endblock %}
+
+{% block content %}
+    <form   method='post' action='' id='main_form'>
+    {% csrf_token %}
+
+    <h1>
+        {% if object %}
+            Modifica edizione
+            <a class='link' href='/edizioni/{{ object.id }}'>Annulla</a>
+        {% else %}
+            Nuova edizione
+            <a class='link' href='/edizioni/aggiungi/googlebooks'>Importa da Google Books</a>
+        {% endif %}
+        <a  href='#' onclick='$("#main_form").submit()' class='btn primary'
+            style='float: right; font-family: sans-serif; position: relative; top: 10px'
+            >Salva</a>
+    </h1>
+
+
+    <h2>Informazioni di base</h2>
+    <div class='section'>
+            <table id='tabella-form-info' class='form-layout'>
+                {% for row in form %}
+                    <tr>
+                        <th>{{ row.label }} &raquo;</th>
+                        <td>{{ row }}</td>
+                    </tr>
+                    {% if row.errors %}
+                    <tr>
+                        <th></th>
+                        <td>
+                            {{ row.errors }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+    </div>
+
+    <div style='float: left; width: 40%; overflow: auto'>
+        <h2>Autori</h2>
+        <table id='tabella-autori'>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in formset_autori %}
+                <tr>
+                    <td>{{ row.id }}
+                        {% if row.instance.pk %}{{ row.DELETE }}{% endif %}
+                        {{ row.nome }}</td>
+                    <td>{{ row.cognome }}</td>
+                    <td></td>
+                </tr>
+                {% if row.errors %}
+                <tr class='errors'>
+                    <td colspan='2'><div style='margin-bottom: 5px; margin-left: 10px;'>{{ row.errors }}</div></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        {{ formset_autori.management_form }}
+    </div>
+
+    <div style='float: right; width: 55%; overflow: auto'>
+        <h2>Copie</h2>
+
+        <div id='copie'>
+            {% for copia in formset_copie %}
+                {% if copia.errors %}
+                <div class='copia invalid'>
+                {% else %}
+                <div class='copia'>
+                {% endif %}
+                    {{ copia.id }}
+
+                    <table>
+                        <tr>
+                            <td>{{ copia.armadio }}</td>
+                            <td>{{ copia.scaffale }}</td>
+                            <td>{{ copia.posizione }}</td>
+                        </tr>
+                        <tr class='hint'>
+                            <td>Armadio</td>
+                            <td>Scaffale</td>
+                            <td>Posizione</td>
+                        </tr>
+                    </table>
+
+                    <div class='errors'>
+                        {{ copia.errors.armadio }}
+                        {{ copia.errors.scaffale }}
+                        {{ copia.errors.posizione }}
+                    </div>
+
+                    {% if copia.instance.pk %}
+                        <br>
+                        <span class='dataora'>Aggiunta il {{ copia.instance.dataora }}</span>
+                        {{ copia.DELETE }}
+                    {% endif %}
+
+
+                    <br>
+                    <span id='label-note'>Note</span>
+                    {{ copia.note }}
+                    <div class='errors'>
+                        {{ copia.note_errors }}
+                    </div>
+
+                    <br>
+                    <div class='errors'>
+                        {% if copia.non_field_errors %}
+                            {{ copia.non_field_errors }}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {{ formset_copie.management_form }}
+    </div>
+
+
+    <div style='clear: both;'>
+        <a  href='#' class='btn primary' style='float: right'
+            onclick='$("#main_form").submit()'
+            >Salva</a>
+    </div>
+    </form>
+{% endblock %}
+

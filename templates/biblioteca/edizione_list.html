@@ -1,0 +1,29 @@
+{% extends "biblioteca/layout.html" %}
+{% load biblioteca_extras %}
+
+{% block head %}
+    <link rel='stylesheet' type='text/css' href='/static/css/app/edizione/list.css'>
+{% endblock %}
+
+{% block content %}
+
+<h1>Lista completa delle edizioni</h1>
+
+<table id='lista'>
+{% for edizione in object_list.all %}
+    <tr class='edizione'>
+        <td class='id'>#{{ edizione.id }}</td>
+        <td class='titolo'><a href='/edizioni/{{ edizione.id }}'>{{ edizione.titolo }}</a></td>
+        <td class='casaeditrice'>{{ edizione.casaeditrice }}</td>
+        <td class='isbn'>
+            {% if edizione.isbn %} ISBN:{{ edizione.isbn }} {% endif %}
+        </td>
+        <td class='anno'>
+            {% if edizione.anno %} {{ edizione.anno }} {% endif %}
+        </div>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}
+

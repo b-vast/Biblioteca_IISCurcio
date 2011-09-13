@@ -1,0 +1,135 @@
+
+#container {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#searchbtn {
+    position: absolute;
+    margin-left: 45px;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    padding-bottom: 11px;
+    border: 1px solid #dfdfdf;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+}
+#searchbtn img { width: 30px; height: 30px; }
+#searchbtn.active {
+    background-color: #4b4b4b;
+    border: 1px solid #333;
+}
+#searchbtn img.active  { display: none; }
+#searchbtn.active img.inactive  { display: none; }
+#searchbtn.active img.active    { display: block; }
+
+#searchform {
+    position: relative;
+    margin-left: 96px;
+    width: 800px;
+    height: 31px;
+    padding: 9px;
+    padding: 10px;
+    border: 1px solid #dfdfdf;
+    border-left: none;
+    background-color: #eee;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+#searchform form { margin: 0; }
+#searchform #old {
+    float: left;
+    margin-top: 7px;
+}
+#searchform .fake-input {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#lista {
+    margin-left: 96px;
+    width: 800px;
+    padding: 0 16px;
+}
+
+.prestito {
+    font-size: 12pt;
+    margin-bottom: 5px;
+    border: 1px solid white;
+    padding: 0 5px;
+}
+
+.prestito .dettagli-link {
+    background-color: #115CCC;
+    border-radius: 12px 12px 12px 12px;
+    color: white;
+    float: right;
+    font-size: 10pt;
+    font-weight: bold;
+    height: 20px;
+    padding: 3px 10px 0;
+    position: relative;
+    text-decoration: none;
+    top: 5px;
+    visibility: hidden;
+}
+.prestito:hover {
+    background-color: #f0f6f7;
+    border: 1px solid #addbf7;
+}
+.prestito:hover .dettagli-link { visibility: visible; }
+
+.prestito .data {
+    float: left;
+    max-width: 8em;
+    vertical-align: baseline;
+    padding-top: 6px;
+}
+.prestito .data .consegna       { color: #888; }
+.prestito .data .restituzione   { color: #e00; }
+.prestito .data .durata         { font-size: 9pt; }
+
+.prestito .beneficiario {
+    text-decoration: none;
+    padding: 3px 5px;
+    color: black;
+}
+
+.prestito .info {
+    margin-left: 8em;
+}
+.prestito .copia {
+}
+.prestito .nome,
+.prestito .cognome {
+    font-size: 14pt;
+    font-weight: bold;
+}
+.prestito .categoria,
+.prestito .classe {
+    font-size: 12pt;
+    color: green;
+}
+
+.prestito .locazione { float: left; max-width: 5.2em; }
+.prestito .locazione span {
+    font-size: 12pt;
+    font-weight: bold;
+    border-right: 1px dotted #a0a0a0;
+    padding: 0 0.1em;
+    padding-right: 0.5em;
+    padding-left: 0.3em;
+}
+.prestito .armadio {
+    border-left: none;
+    font-size: 13pt;
+}
+
+.prestito .titolo {
+    display: block;
+    margin-left: 5.2em;
+    padding-left: 8px;
+}
+

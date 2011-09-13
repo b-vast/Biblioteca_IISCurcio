@@ -1,0 +1,97 @@
+
+#info-edizione {
+    margin-bottom: 20px;
+}
+
+.autori {
+    font-size: 16pt;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.titolo {
+    font-size: 22pt;
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+.info {
+    line-height: 18pt;
+    font-size: 12pt;
+}
+.casaeditrice {
+    font-size: 13pt;
+    color: green;
+    font-weight: bold;
+}
+.isbn {
+    font-size: 12pt;
+    color: #a0a0a0;
+    font-style: italic;
+}
+
+.nessuna-copia {
+    padding: 2em;
+    font-size: 14pt;
+}
+
+#tabella-copie {
+    width: 100%;
+}
+#tabella-copie tbody tr:last-child td {
+    border-bottom: 1px solid #e0e0e0;
+}
+#tabella-copie tbody tr:first-child td {
+    padding-top: 10px;
+}
+#tabella-copie td.icona-note {
+    width: 1.5em;
+}
+#tabella-copie .armadio,
+#tabella-copie .scaffale,
+#tabella-copie .posizione {
+    font-size: 20pt;
+    line-height: 18pt;
+    padding: 0;
+    padding-right: 10px;
+    width: 1em;
+    height: 1em;
+    font-weight: bold;
+}
+#tabella-copie .armadio {
+    font-size: 24pt;
+}
+#tabella-copie .dataora {
+    color: #a0a0a0;
+    padding-left: 5px;
+    font-size: 10pt;
+}
+#tabella-copie .note-link {
+    font-size: 9pt;
+    padding-left: 5px;
+}
+#tabella-copie .note {
+    margin: 0 20px;
+    padding: 10px;
+    border-left: 1px dashed #dfdfdf;
+    font-size: 8pt;
+}
+
+#tabella-copie tfoot td {
+    text-align: right;
+    padding-right: 20px;
+}
+
+#tabella-copie img.icona-note {
+    cursor: pointer;
+    margin: 5px;
+}
+
+#confirm-delete #confirm,
+#delete { cursor: pointer; background-color: #d11; }
+#confirm-delete #confirm:hover,
+#delete:hover { background-color: #f00; }
+
+#confirm-delete .body {
+    font-family: 'Segoe UI';
+    font-size: 10pt;
+}
+

@@ -1,0 +1,30 @@
+
+.op-result-box {
+    border-radius: 10px;
+    padding: 10px;
+}
+.op-result-box-success {
+    background-color: #FFF5B8;
+    border: 2px solid #FFE959;
+}
+.op-result-box-failure {
+    background-color: #FFEAE8;
+    border: 1px solid red;
+}
+
+.op-result-icon {
+    position: absolute;
+    float: left;
+    max-width: 3.5em;
+    margin: 5px;
+    vertical-align: middle;
+}
+.op-result-text {
+    margin-left: 4em;
+}
+.op-result-title {
+    font-weight: bold;
+}
+.op-result-message {
+}
+

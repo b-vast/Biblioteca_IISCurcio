@@ -1,0 +1,155 @@
+{% extends "biblioteca/layout.html" %}
+
+{% block head %}
+
+<link rel='stylesheet' type='text/css' href='/static/css/app/edizione/googlebooks.css'>
+
+<script type='text/javascript'>
+
+function searchBooks() {
+    loadingScreen();
+    
+    var q = $('#searchbox input').val();
+    $.ajax( { type: 'GET'
+            , url: "https://www.googleapis.com/books/v1/volumes?q="+escape(q)
+            , dataType: 'jsonp'
+            , success: showResults
+            , error:    function(jqXHR, textStatus, errorThrown) {
+            alert("Error: "+errorThrown);
+                            showError(errorThrown);
+                        }
+            });
+}
+
+function loadingScreen() {
+    $('#results').children().remove();
+    $('#results').html(
+        "<div class='large-message' id='loading'>"
+        +"<div>Ricerca in corso...</div>"
+        +"<img src='/static/img/loading.gif'>"
+        +"</div>"
+    );
+}
+
+function showResults(data) {
+    $('#results').children().remove();
+    
+    var q = $('#searchbox input').val();
+    if( data.totalItems == '0' ) {
+        $('#results').html(
+            "<div class='large-message'>Nessun risultato per"
+            +" <span class='highlight'>"+q+"</span></h2>");
+        return;
+    }
+    
+    $('#results').html("<h2>"+data.totalItems+" risultati per "+
+           "<span class='highlight'>"+q+"</span></h2>");
+    for(var i=0; i < Math.min(10, data.items.length); i++) {
+        var volume = data.items[i];
+        var element = document.createElement('div');
+        $(element).html(resultItemHTML(volume));
+        $('#results').append(element);
+    }
+}
+
+function resultItemHTML(volume) {
+    var html =      "<div class='result-item' style='overflow: auto'>\n";
+    var info = volume.volumeInfo;
+    
+    var isbn = null;
+    for(i in info.industryIdentifiers) {
+        var id = info.industryIdentifiers[i];
+        if( id.type == 'ISBN_13' || id.type == 'ISBN_10' )
+            isbn = id.identifier;
+    }
+    
+    var insertUrl = "/edizioni/aggiungi?titolo="+escape(info.title);
+    if( info.publishedData ) {  var year = info.publishedDate.replace(/^(\d+)-.*$/, "$1");
+                                insertUrl += "&anno="+escape(year); }
+    if( info.publisher )        insertUrl += "&casaeditrice="+escape(info.publisher);
+    if( isbn )                  insertUrl += "&isbn="+escape(isbn);
+    if( info.authors )
+        insertUrl += info.authors.map(function(autore) {
+                var toks = autore.split(/\s+/),
+                    nome = toks[0],
+                    cognome = toks.slice(1);
+                return "&autori="+escape(nome+','+cognome);
+        });
+
+    // Thumbnail
+    if( info.imageLinks && info.imageLinks.smallThumbnail )
+        html += "<div style='float: left; width: 50px; overflow:hidden'>"
+                +"<img src='"+info.imageLinks.smallThumbnail+"'>"
+                +"</div>";
+    
+    html += "<div style='padding-left: 80px;'>\n";
+    html += "<a class='title' href='"+insertUrl+"'>"+info.title+"</a><br>\n";
+    if( info.authors ) html += "<span class='authors'>"+info.authors.join(" / ")+"</span><br>";
+    
+    var a = [];
+    //          Publishers
+    if( info.publisher )
+        a.push("edito da <span class='publishers'>"+info.publisher+"</span>");
+    //          Published date
+    a.push(info.publishedDate);
+    //          Pages
+    a.push(info.pageCount+" pagine");
+    //          ISBN
+    if(isbn) a.push("ISBN: <tt>"+isbn+"</tt>");
+    
+    html += a.join(" - ")+"<br>";
+    html += "<a class='info-link' href='"+info.infoLink+"'>Informazioni &raquo;</a>";
+    html += "</div>\n";
+    
+    html += "</div>";
+    return html;
+}
+    
+    function showError(errorThrown) {
+        alert("Errore: "+errorThrown);
+    }
+        
+        
+</script>
+
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Importa da Google Books</h1>
+
+<div id='effects-container'>
+    <div id='disclaimer'>
+        <img src='/static/img/warning.png' id='disclaimer-icon'>
+        <div class='text'>
+            <h3>Attenzione</h3>
+            <p>
+                Questa funzione permette di importare i dati di un libro da una ricerca di Google Books.
+                Ci&ograve; non garantisce che tali dati siano completi e consistenti. Per questo motivo,
+                &egrave; necessario ricontrollare con cura tutte le informazioni che si stanno per
+                inserire nell'apposita maschera di inserimento che verr&agrave; mostrata successivamente.
+            </p>
+        </div>
+    </div>
+    <a href='#' onclick="$('#effects-container').toggle('blind', 'slow')" id='toggle-link'>Nascondi &laquo;</a>
+</div>
+
+<h2>Ricerca</h2>
+
+<div style='text-align: center'>
+	<img src='/static/img/google_books_logo.gif'>
+</div>
+<div id='searchbox'>
+		<input name='q' type='text' onkeypress='if(event.keyCode==13) searchBooks()'>
+		<!-- <input type='submit' value='Cerca'> -->
+		<button onclick='searchBooks()'>Cerca</button>
+</div>
+
+<div id='results'>
+</div>
+
+
+
+{% endblock %}
+

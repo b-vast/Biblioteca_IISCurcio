@@ -1,0 +1,102 @@
+{% extends "biblioteca/layout.html" %}
+{% load biblioteca_extras %}
+
+{% block head %}
+    <link rel='stylesheet' type='text/css' href='/static/css/app/prestito/modifica.css'>
+{% endblock %}
+
+{% block content %}
+    <h1>Modifica informazioni prestito</h1>
+    <br>
+    <div style='width: 75%; margin: auto'>
+        {% box_copia copia %}
+    </div>
+
+    <h2>Informazioni prestito</h2>
+    <div class='section'>
+        <form name='main_form' method='post' action='#'>
+        {% csrf_token %}
+        <table class='form-layout'>
+            <tbody>
+                <tr>
+                    <td rowspan='3' class='grouplabel'>Beneficiario &raquo;</td>
+                    <td class='field nome'     >{{ form.nome }}</td>
+                    <td class='field cognome'  >{{ form.cognome }}</td>
+                    <td class='field categoria'>{{ form.categoria }}</td>
+                    <td class='field classe'   >{{ form.classe }}</td>
+                </tr>
+                <tr>
+                    <td class='label'>Nome</td>
+                    <td class='label'>Cognome</td>
+                    <td class='label'>Categoria</td>
+                    <td class='label'>Classe</td>
+                </tr>
+                <tr>
+                    <td class='error'>{{ form.nome.errors }}</td>
+                    <td class='error'>{{ form.cognome.errors }}</td>
+                    <td class='error'>{{ form.categoria.errors }}</td>
+                    <td class='error'>{{ form.classe.errors }}</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td rowspan='3' class='grouplabel'>Responsabile &raquo;</td>
+                    <td class='field nomeresp'   >{{ form.nomeresp }}</td>
+                    <td class='field cognomeresp'>{{ form.cognomeresp }}</td>
+                </tr>
+                <tr>
+                    <td class='label'>Nome</td>
+                    <td class='label'>Cognome</td>
+                </tr>
+                <tr>
+                    <td class='error'>{{ form.nomeresp.errors }}</td>
+                    <td class='error'>{{ form.cognomeresp.errors }}</td>
+                </tr>
+            </tbody>
+            {% if form.instance.id %}
+            <tbody>
+                <tr>
+                    <td rowspan='3' class='grouplabel'>Date &raquo;</td>
+                    <td colspan='2' class='field dataconsegna'>{{ form.instance.dataconsegna }}</td>
+                    <td colspan='2' class='field datarestituzione'>{{ form.instance.datarestituzione|default:" - " }}</td>
+                </tr>
+                <tr>
+                    <td colspan='2' class='label'>Consegna</td>
+                    <td colspan='2' class='label'>Restituzione</td>
+                </tr>
+            </tbody>
+            {% endif %}
+            <tbody>
+                <tr>
+                    <td rowspan='2' class='grouplabel'>Note &raquo;</td>
+                    <td colspan='4'>
+                        {{ form.note }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='4'>{{ form.note.errors }}</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td class='grouplabel'></td>
+                    <td class='commands' colspan='4'>
+                        <button
+                            type='submit'
+                            class='btn primary'
+                            >Salva</button>
+                        <button
+                            type='button'
+                            class='btn'
+                            onclick='window.history.back()'
+                            >Annulla</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {{ form.errors }}
+        </form>
+    </div>
+
+{% endblock %}
+

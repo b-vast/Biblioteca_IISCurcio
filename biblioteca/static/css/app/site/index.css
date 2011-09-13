@@ -1,0 +1,91 @@
+
+#left-pane {
+    width: 46%;
+    float: left;
+}
+
+#left-pane h2, #right-pane h2 {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#tabella-copie {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11pt;
+    cursor: normal;
+}
+#tabella-copie tbody:hover {
+    background-color: #EBF3FF; 
+}
+#tabella-copie th {
+    border-bottom: 1px #a0a0a0 solid;
+    padding: 2px 5px;
+}
+#tabella-copie td:first-child {
+    border-left: none;
+}
+#tabella-copie td {
+    border-left: 1px #dfdfdf dotted;
+    text-align: center;
+}
+#tabella-copie td.locazione {
+    width: 2em;
+}
+#tabella-copie td.data {
+    font-size: 9pt;
+}
+#tabella-copie td.titolo {
+    text-align: left;
+    padding-left: 10px;
+    font-size: 9pt;
+}
+
+
+#right-pane {
+    width: 50%;
+    margin-left: 50%;
+}
+
+
+#tabella-prestiti {
+    width: 100%;
+    border-collapse: collapse;
+}
+#tabella-prestiti tbody:hover {
+    background-color: #EBF3FF; 
+}
+#tabella-prestiti td {
+    padding: 1px 5px;
+}
+#tabella-prestiti td.data {
+    color: grey;
+    font-size: 11pt;
+}
+#tabella-prestiti td.beneficiario {
+    font-size: 11pt;
+    font-weight: bold;
+}
+#tabella-prestiti td.link {
+    text-align: right;
+    font-size: 10pt;
+}
+#tabella-prestiti tbody:hover a {
+    visibility: visible;
+}
+#tabella-prestiti tbody a {
+    visibility: hidden;
+}
+#tabella-prestiti td.titolo {
+    color: green;
+    font-size: 11pt;
+    font-style: italic;
+    padding-bottom: 5px;
+}
+
+.nessun-prestito {
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+}
+

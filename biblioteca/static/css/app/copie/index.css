@@ -1,0 +1,71 @@
+
+#toolbar {
+    margin: 10px;
+    height: 30px;
+    vertical-align: middle;
+}
+#toolbar #message {
+    color: darkgrey;
+    font-size: 9pt;
+    font-style: italic;
+    margin-left: 2em;
+}
+#toolbar #message .success {
+    color: green;
+}
+#toolbar #message .error {
+    color: red;
+}
+
+.toolbar-item {
+    display: inline;
+}
+.toolbar-item-disabled > a {
+    color: #a0a0a0;
+    font-style: italic;
+}
+.toolbar-icon {
+    position: relative;
+    top: 4px;
+}
+.toolbar-separator {
+    margin-left: 5px;
+    border-left: 1px solid #dfdfdf;
+    padding-left: 5px;
+}
+
+#tabella-copie table {
+    border-collapse: collapse;
+    font-size: 10pt;
+    width: 100%;
+    cursor: default;
+}
+#tabella-copie tbody tr:hover {
+    background-color: #D7E8FF;
+}
+#tabella-copie thead th {
+    padding: 0 5px 0 5px;
+    border-bottom: 1px solid #dfdfdf;
+    background-color: #efefef;
+    font-size: 9pt;
+}
+#tabella-copie tbody tr {
+    font-size: 9pt;
+}
+#tabella-copie tbody tr.selected {
+    background-color: #2662FF;
+    color: white;
+}
+#tabella-copie tbody td:first-child {
+    border-left: 1px dotted #dfdfdf;
+}
+#tabella-copie tfoot td {
+    text-align: center;
+    border-top: 1px solid #dfdfdf;
+}
+#tabella-copie tbody td {
+    border-right: 1px dotted #dfdfdf;
+    text-align: center;
+    height: 20px;
+}
+

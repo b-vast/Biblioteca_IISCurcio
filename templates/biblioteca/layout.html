@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>Biblioteca scolastica I.I.S. "G.Curcio"</title>
+        <!-- jquery.tools deve andare prima di jquery.ui
+             Non chiedetemi perchè. -->
+        <script type='text/javascript' src='/static/js/jquery.js'></script>
+        <script type='text/javascript' src='/static/js/jquery.tools.min.js'></script> 
+        <script type='text/javascript' src='/static/js/jquery.ui.js'></script>
+
+        <link rel="stylesheet" type="text/css" href="/static/css/jquery-ui/smoothness/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/app/style.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/app/layout.css">
+
+        {% block head %}{% endblock %}
+    </head>
+        
+    <body>
+
+        {% if debug %}
+            <div id='topleft-items'>
+                <div id='date'>{% now "d-b-Y" %}</div>
+                <div id='debug-msg'>Modalit&agrave; debug</div>
+                <div id='db-debug'>
+                    <a href='#' onclick='$("#query-list").dialog("open")'>Queries &raquo;</a>
+                </div>
+                <div id='query-list' style='display: none'>
+                    <ul>
+                    {% for query in sql_queries %}
+                        <li>{{ query.sql }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <script type='text/javascript'>
+                    $(function() {
+                        $('#query-list').dialog({ autoOpen: false, title: 'Queries', width: 600 });
+                    });
+                </script>
+            </div>
+        {% endif %}
+            
+        <div id='topbar'>
+            <div id='topbar-content'>
+                <div id='tools'>
+                    <div id='input-container'>
+                        <form action='/ricerca' method='get'>
+                            <div class='fake-input'>
+                                <input type='text' name='q'
+                                        placeholder='Ricerca'>
+                                <img class='icon' src='/static/img/find-inv.png'
+                                    style='opacity: 0.7'>
+                            </div>
+                        </form>
+                    </div>
+                    <ul>
+                        <li><a href='/armadi'>Armadi</a></li>
+                        <li><a href='/edizioni/aggiungi'>Aggiungi</a></li>
+                        <li><a href='/prestiti'>Prestiti</a></li>
+                    </ul>
+                </div>
+                <div id='branding'>
+                    <a href='/'><h1>Biblioteca Scolastica</h1></a>
+                    <h2>Istituto Istruzione Superiore "G.Curcio", Ispica</h2>
+                </div>
+            </div>
+
+            {% if alert %}
+            <div class='alert-message'>
+                {{ alert }}
+                <a href='javascript:void(0)' class='close'>&times;</a>
+            </div>
+            {% endif %}
+        </div>
+        <div id='content' class='centered'>
+            {% block content %}{% endblock %}
+        </div>
+        
+    </body>
+</html>
+

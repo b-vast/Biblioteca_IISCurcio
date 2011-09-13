@@ -1,0 +1,120 @@
+#topbar {
+    width: 100%;
+    background-color: #555;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px black;
+
+    background: #6b6b6b; /* Old browsers */
+    background: -moz-linear-gradient(top, #6b6b6b 1%, #000000 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#6b6b6b), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #6b6b6b 1%,#000000 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #6b6b6b 1%,#000000 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #6b6b6b 1%,#000000 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b6b6b', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #6b6b6b 1%,#000000 100%); /* W3C */
+
+}
+
+#topbar-content {
+    margin-left: 100px;
+    margin-right: auto;
+}
+
+#branding {
+    margin: 0;
+    height: 35px;
+}
+
+#branding h1 {
+    font-size: 16pt;
+    font-weight: normal;
+    display: inline;
+}
+#branding h2 {
+    font-size: 8pt;
+    font-weight: normal;
+    display: inline;
+    position: relative;
+    top: 5px;
+    color: #aaa;
+}
+
+#tools {
+    float: right; 
+    margin-right: 100px;
+    position: relative;
+}
+#tools ul {
+    list-style-type: none;
+    margin: 0;
+}
+#tools li { display: inline; }
+#topbar a {
+    color: #ddd;
+    padding: 12px 10px;
+    vertical-align: middle;
+    position: relative;
+    top: 3px;
+}
+#topbar a:hover {
+    background-color: rgba(255,255,255, 0.2);
+    text-decoration: none;
+}
+
+#input-container {
+    position: absolute;
+    right: 250px;
+    top: 3px;
+}
+#input-container .fake-input {
+    height: 26px;
+    width: 178px;
+    background-color: #888;
+    border-radius: 4px;
+}
+#input-container .fake-input input[type='text'] {
+    height: 25px;
+    width: 150px;
+    background: none;
+    color: #ddd;
+    position: relative;
+    top: 1px;
+    font-size: 10pt;
+}
+#input-container .fake-input .icon {
+    width: 17px;
+    height: 17px;
+    padding: 5px;
+}
+#input-container .fake-input input[type='text'] {
+    height: 25px;
+    width: 150px;
+}
+
+#topleft-items {
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 9pt;
+    background-color: white;
+    border-left: 2px solid #222;
+    border-bottom: 2px solid #222;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0px 0px 10px #aaa;
+    padding: 5px;
+}
+#query-list {
+    font-family: monospace;
+    font-size: 10pt;
+    overflow: auto;
+}
+
+#content {
+    position: relative;
+    font-size: 10pt;
+    width: 1000px;
+    margin: 0 auto;
+}
+

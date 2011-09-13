@@ -1,0 +1,32 @@
+
+.info-prestito .beneficiario {
+    font-size: 18pt;
+    font-weight: bold;
+}
+.info-prestito .categoria {
+    font-size: 11pt;
+    color: green;
+}
+
+.info-prestito table td:first-child {
+    font-size: 9pt;
+    font-style: italic;
+}
+.info-prestito table td {
+    padding-left: 0.7em;
+    font-size: 14pt;
+    vertical-align: middle;
+}
+.info-prestito .data-consegna {
+    color: red;
+}
+.info-prestito .responsabile {
+    font-weight: bold;
+}
+.info-prestito .note {
+    vertical-align: bottom;
+    white-space: nowrap;
+    font-size: 10pt;
+    border-left: 1px dashed #a0a0a0;
+}
+

@@ -1,0 +1,70 @@
+{% extends "biblioteca/layout.html" %}
+
+{% block head %}
+    <link rel='stylesheet' type='text/css' href='/static/css/app/home.css'>
+{% endblock %}
+
+{% block content %}
+
+<div id='ricerca' class='section'>
+    <form method='get' action='/ricerca'>
+        <div class='fake-input' style='margin: 0px auto'>
+            <input type='text' name='q'
+                    onkeypress='if(event.keyCode==13) $("#ricerca form").submit()'>
+            
+            <a  href='javascript:void(0)'
+                onclick='$("#ricerca form").submit()'>
+                <img class='icon' src='/static/img/find.png'>
+            </a>
+        </div>
+    </form>
+</div>
+
+<div class='section'>
+
+    <div class='left-column'>
+        <h2>
+            Prestiti in corso 
+            <small><a href='/prestiti'>Mostra tutti &raquo;</a></small>
+        </h2>
+
+        <div id='#prestiti'>
+        {% for prestito in prestiti %}
+            <div class='prestito'>
+                <div class='data'>
+                    <span class='giorno'>{{ prestito.dataconsegna|date:"d" }}</span>
+                    <br>
+                    <span class='mese'>{{ prestito.dataconsegna|date:"M" }}</span>
+                </div>
+                <div class='beneficiario'>
+                    <a class='link' href='/copie/{{ prestito.copia.id }}/+prestiti'>
+                        <span class='nome'>{{ prestito.nome }}</span>
+                        <span class='cognome'>{{ prestito.cognome }}</span>
+                        <span class='categoria'>{{ prestito.categoria }}</span>
+                        <span class='classe'>{{ prestito.classe }}</span>
+                    </a>
+                </div>
+                <div class='copia'>
+                    <a href='/armadi/{{ prestito.copia.armadio }}' 
+                        class='armadio'>{{ prestito.copia.armadio }}</a>
+                    <span class='scaffale'>{{ prestito.copia.scaffale }}</span>
+                    <span class='posizione'>{{ prestito.copia.posizione }}</span>
+                    <a  href='/edizioni/{{ prestito.copia.edizione.id }}'
+                        class='titolo'>
+                        {{ prestito.copia.edizione.titolo }}
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<div class='right-column'>
+    <h2>Colonna destra</h2>
+</div>
+
+
+{% endblock %}
+
+

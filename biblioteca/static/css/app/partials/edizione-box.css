@@ -1,0 +1,37 @@
+/* box informazioni edizione */
+.edizione {
+    margin: 5px;
+    padding: 5px;
+    padding-left: 15px;
+    overflow: auto;
+}
+.edizione-titolo {
+    color: red;
+    font-size: 14pt;
+    padding: 0;
+    font-family: 'Rokkitt';
+}
+.edizione-autori {
+/*    color: #5B93EC; */
+    color: darkred;
+    font-style: italic;
+    font-size: 10pt;
+}
+.edizione-casaeditrice {
+    font-size: 10pt;
+    font-weight: bold;
+    color: green;
+}
+.edizione-copie {
+    /*  color: #5B93EC; */
+    color: #3d3d3d;
+    position: relative;
+    font-family: 'Oswald';
+    line-height: 22px;
+}
+.edizione-numero-copie {
+    font-size: +1.5em;
+    padding: 0;
+}
+
+

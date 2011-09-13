@@ -1,0 +1,80 @@
+
+#lista-armadi {
+    list-style-type: none;
+    margin: 0;
+}
+#lista-armadi li { display: inline; }
+#lista-armadi li.armadio a { 
+    font-size: 12pt; 
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+#lista-armadi li.armadio a:hover {
+    background-color: #CCE0FF;
+}
+#lista-armadi li.armadio.corrente a { 
+    background-color: #115CCC;
+    color: white;
+}
+#lista-armadi li:first-child,
+#lista-armadi li:last-child {
+    font-size: 24pt;
+    font-weight: lighter;
+    color: #a0a0a0;
+    position: relative;
+    top: 3px;
+}
+
+.scaffale {
+    margin-top: 30px;
+}
+.scaffale .scaffale-label {
+    position: relative;
+    bottom: 10px;
+    float: left;
+    width: 50px;
+    font-size: 10pt;
+    text-align: center;
+}
+.scaffale .scaffale-label span:first-child {
+    position: relative;
+    top: 10px;
+}
+.scaffale .scaffale-label .nome-scaffale {
+    font-size: 40pt;
+}
+.lista {
+    margin-left: 60px;
+    border-left: 1px dotted #aaa;
+}
+.lista ol {
+    padding-left: 75px;
+    font-size: 18pt;
+    color: #999;
+    margin: 0;
+}
+.lista .posizione {
+    display: none;
+}
+.lista .titolo {
+    margin-left: 6pt;
+}
+
+.lista .prestito {
+    position: relative;
+    bottom: 3px;
+    padding: 3px 5px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #ededed;
+    color: #999;
+    font-size: 9pt;
+    text-decoration: none;
+}
+.lista .prestito .nome {
+    font-size: 9pt;
+    font-weight: bold;
+    color: #666;
+}

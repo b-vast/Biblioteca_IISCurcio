@@ -1,0 +1,59 @@
+
+#simple-search {
+    padding: 20px 20px;
+    border-bottom: 1px solid #dfdfdf;
+}
+#simple-search form { margin: 0; }
+
+#results {
+    width: 70%;
+}
+#results h2 .query {
+    color: #115CCC;
+}
+
+#lista {
+    margin: 20px;
+    width: 100%;
+}
+.hit {
+    border-bottom: 1px solid #ccc;
+    border: 1px solid white;
+    padding: 2px 10px;
+    margin-top: 10px;
+    vertical-align: baseline;
+    width: 100%;
+}
+.hit:hover {
+    background-color: #f0f6f7;
+    border: 1px solid #ADDBF7;
+}
+.hit .id {
+    width: 2em;
+    font-size: 12pt;
+    color: #aaa;
+    font-style: italic;
+}
+.hit .titolo {
+    font-size: 13pt;
+    font-weight: bold;
+    max-width: 40%;
+}
+.hit .casaeditrice {
+    width: 10em;
+    font-size: 10pt;
+    font-weight: bold;
+    color: green;
+}
+.hit .isbn {
+    width: 10em;
+    font-size: 9pt;
+    color: #a0a0a0;
+}
+.hit .anno {
+    width: 5em;
+    font-size: 10pt;
+}
+
+
+

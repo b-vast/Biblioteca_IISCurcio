@@ -1,0 +1,140 @@
+
+#content h2 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#tabella-form-info {
+    width: 100%;
+}
+#tabella-form-info th:first-child {
+    width: 8em;
+}
+
+
+#tabella-autori {
+    margin: 0;
+    overflow: auto;
+}
+#tabella-autori thead th {
+    text-align: left;
+    padding: 5px 20px;
+    border-bottom: 1px solid #dfdfdf;
+    font-size: 10pt;
+}
+#tabella-autori thead th:last-child
+    { border-bottom: none; }
+#tabella-autori input[type='text'] {
+    font-size: 10pt;
+    height: 20pt;
+    width: 10em;
+    border: none;
+    border-bottom: 1px dashed #dfdfdf;
+}
+#tabella-autori .dynamic-form-add td {
+    padding-left: 80px;
+}
+
+#tabella-autori .add-row {
+    margin: 0;
+    font-size: 10pt;
+    display: block;
+    padding: 10px;
+    padding-left: 20px;
+}
+#tabella-autori .delete-row {
+    display: block;
+    visibility: hidden;
+    float: right;
+    font-size: 10pt;
+    position: relative;
+    top: 5px;
+    margin-left: 10px;
+}
+#tabella-autori tbody tr:hover .delete-row {
+    visibility: visible;
+}
+.delete-row:hover,
+.add-row:hover {
+    text-decoration: none;
+}
+.delete-row img,
+.add-row img {
+    vertical-align: middle;
+}
+
+
+#copie {
+    margin: 5px 20px;
+}
+.copia {
+    border-bottom: 1px solid #dfdfdf;
+    padding: 10px;
+}
+.copia.invalid {
+    border: 3px solid red;
+    border-radius: 5px;
+}
+.copia .errorlist {
+    background-color: #fcc;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.copia input[type='text']{
+    font-size: 20pt;
+    border: none;
+    border-bottom: 1px dashed #a0a0a0;
+    width: 1.7em;
+    height: 35px;
+    padding: 0;
+    padding-left: 5px;
+    margin-right: 10px;
+    overflow: hidden;
+}
+.copia .dataora {
+    font-size: 10pt;
+    color: #a0a0a0;
+}
+.copia #label-note {
+    color: #8f8f8f;
+    font-style: italic;
+    font-size: 10pt;
+    margin-right: 5px;
+    position: relative;
+    bottom: 6px;
+}
+.copia textarea {
+    padding: 3px 5px;
+    font-family: sans-serif;
+    font-size: 10pt;
+    background-color: inherit;
+    border: none;
+    border-left: 1px dotted #a0a0a0;
+    height: 2em;
+    width: 20em;
+}
+.copia textarea:focus {
+    border: 1px solid #a0a0a0;
+    border-left-width: 2px;
+    height: 5em;
+}
+.copia .delete-row {
+    display: block;
+    visibility: hidden;
+    font-size: 10pt;
+    text-align: right;
+}
+div.copia:hover .delete-row {
+    visibility: visible;
+}
+#copie .add-row {
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+

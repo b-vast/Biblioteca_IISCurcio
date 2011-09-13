@@ -1,0 +1,72 @@
+{% extends "biblioteca/layout.html" %}
+
+{% block head %}
+    <link rel='stylesheet' type='text/css' href='/static/css/app/armadio/index.css'>
+{% endblock %}
+
+{% block content %}
+
+<h1>Vista armadio</h1>
+
+<ul id='lista-armadi'>
+    <li>{</li>
+
+    {% for nome in armadi %}
+        {% if nome == nome_armadio %}
+        <li class='armadio corrente'>
+        {% else %}
+        <li class='armadio'>
+        {% endif %}
+            <a href='/armadi/{{ nome }}'>{{ nome }}</a>
+        </li>
+    {% endfor %}
+
+    <li>}</li>
+</ul>
+<br>
+
+{% if armadio %}
+
+    {% for scaffale, copie in armadio.items %}
+    <div class='scaffale'>
+        <div class='scaffale-label'>
+            <span>Scaffale</span>
+            <span class='nome-scaffale'>{{ scaffale }}</span>
+        </div>
+        <div class='lista'>
+            <ol>
+            {% for posizione, copia in copie.items %}
+                {% if not copia %}
+                <li> - </li>
+                {% else %}
+                <li>
+                    <a class='titolo'
+                        href='/edizioni/{{ copia.edizione.id }}'
+                        >{{ copia.edizione.titolo }}</a>
+
+                    {% if copia.prestito_corrente %}
+                        {% with copia.prestito_corrente as prestito %}
+                        <a class='prestito'
+                            href='/copie/{{ copia.id }}/+prestiti'>
+                            In prestito a
+                            <span class='nome'>
+                                {{ prestito.nome }}
+                                {{ prestito.cognome }}
+                            </span>
+                            dal
+                            <span class='data'>{{ prestito.dataconsegna }}</span>
+                        </a>
+                        {% endwith %}
+                    {% endif %}
+                </li>
+                {% endif %}
+
+            {% endfor %}
+            </ol>
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
+

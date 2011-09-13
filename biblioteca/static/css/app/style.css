@@ -1,0 +1,280 @@
+html, body {
+    margin: 0;
+    font-family: 'Droid Sans', 'Segoe UI', sans-serif;
+    background-color: white;
+    cursor: default;
+}
+
+textarea, input { outline: none; font-family: sans-serif; }
+
+/** Text styles */
+.highlight {
+    color: #5abef3; 
+    font-weight: bold;
+}
+
+.validation-message {
+    font-size: 10pt;
+    color: red;
+    margin-left: 20px;
+}
+
+.hint {
+    color: #8f8f8f;
+    font-style: italic;
+    font-size: 10pt;
+}
+
+#content h1 {
+    font-size: 28pt;
+    font-family: 'Rokkitt', 'Segoe UI', sans-serif;
+    font-weight: lighter;
+    color: #115CCC;
+    margin: 0;
+    margin-top: 10px;
+}
+
+#content h1 .link {
+    font-size: 14pt;
+    margin-left: 1em;
+    border-left: 1px solid #a0a0a0;
+    padding-left: 5px;
+}
+
+#content h2 {
+    font-family: 'Oswald', 'Segoe UI', sans-serif;
+    font-size: 16pt;
+    font-weight: bold;
+    color: #3d3d3d;
+}
+#content h2 small {
+    color: #5d5d5d;
+    font-size: 10pt;
+    font-weight: normal;
+}
+
+/** Links */
+a {
+    text-decoration: none;
+    color: #3361FF;
+}
+a:visited {
+    color: #3361FF;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/** Various controls (mainly <input>) */
+input[type="text"] {
+    height: 25px;
+    padding-left: 5px;
+    border: 1px outset black;
+    background-color: inherit;
+    font-family: sans-serif;
+    font-size: 17px;
+    padding-left: 0.8em;
+    vertical-align: middle;
+}
+
+.checkbox span {
+    vertical-align: top;
+}
+
+.fake-input {
+    border: 1px solid #a0a0a0;
+    border-radius: 3px;
+    height: 30px;
+    width: 500px;
+    padding: 0;
+    background-color: white;
+}
+.fake-input input[type='text'] {
+    background: inherit;
+    border: none;
+    padding: 0 5px;
+    height: 30px;
+    width: 470px;
+}
+.fake-input a {
+    margin: 0;
+}
+.fake-input .icon {
+    cursor: pointer;
+    float: right;
+    position: absolute;
+    padding: 5px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+/** Layout */
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.section {
+    margin-left: 6em;
+    margin-right: 6em;
+    overflow: auto;
+}
+
+.left-column {
+    width: 50%;
+    float: left;
+}
+
+.right-column {
+    margin-left: 50%;
+}
+
+.large-message {
+    margin: 2em;
+    text-align: center;
+    font-size: 22pt;
+}
+
+.tooltip {
+    display: none;
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.alert-message {
+    background-color: #e22;
+    border: 1px solid #f00;
+    border-radius: 3px;
+    color: white;
+    padding: 20px 10px;
+}
+.alert-message .close {
+    float: right;
+}
+
+.errorbox {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border 2px solid red;
+}
+
+/* forms & form layouts */
+.form-layout {
+    border: none;
+    margin: 10px auto;
+}
+.form-layout input[type='text'] {
+    width: 100%;
+    height: 25px;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+}
+.form-layout textarea {
+    height: 100px;
+}
+.form-layout input[type='text']:focus,
+.form-layout textarea:focus {
+    box-shadow: 0px 0px 8px #bdf;
+}
+/*
+.form-layout textarea {
+    width: 18em;
+    height: 10em;
+    font-family: serif;
+    font-size: 10pt;
+    border: none;
+    border-left: 1px dashed #cfcfcf;
+    padding: 5px;
+}
+*/
+.form-layout th {
+    font-size: 10pt;
+    font-weight: normal;
+    text-align: right;
+}
+
+
+.copia-layout {
+    padding: 10px;
+}
+.copia-layout input[type='text'] {
+    text-align: center;
+    width: 3em;
+}
+.copia-layout input[name='Note'] {
+    text-align: left;
+    width: 20em;
+    font-size: 10pt;
+}
+.copia-layout tbody td {
+    text-align: center;
+    font-size: 15pt;
+}
+.copia-layout tbody td:first-child {
+    border-left: none;
+}
+.copia-layout tfoot td {
+    text-align: center;
+    font-size: 8pt;
+    font-style: italic;
+    padding: 0 5px;
+}
+
+a.btn,
+.btn {
+    display: inline;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+    vertical-align: middle;
+    font-size: 10pt;
+    background-color: #f0f0f0;
+    color: black;
+    border: 1px solid #dfdfdf;
+}
+a.btn.primary,
+.btn.primary {
+    font-size: 11pt;
+    font-weight: bold;
+    background-color: #115CCC;
+    color: white;
+    border: none;
+}
+.btn:hover {
+    background-color: #dfdfdf;
+    text-decoration: none;
+}
+.btn.primary:hover {
+    background-color: #3361FF;
+}
+
+/* Dialogs */
+.dialog .icon {
+    float: left;
+    width: 48px;
+    position: relative;
+    top: 20px;
+}
+.dialog .body {
+    margin: 10px;
+    margin-left: 60px;
+    font-family: 'Segoe UI';
+}
+.dialog .body h1 {
+    margin: 0;
+    font-size: 18pt;
+    font-weight: lighter;
+    color: #115CCC;
+}
+.dialog .body .commands { list-style-type: none; }
+.dialog .body .commands li { display: inline; }
+.dialog button {
+    font-family: inherit;
+}
+
+

@@ -1,0 +1,55 @@
+
+table.form-layout {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 2px 10px;
+}
+table td.label {
+    font-size: 7.5pt;
+    font-style: italic;
+    padding-top: 0px;
+    padding-left: 25px;
+    padding-bottom: 20px;
+}
+table td.grouplabel {
+    width: 8em;
+    padding-top: 6px;
+    padding-right: 20px;
+    text-align: right;
+    vertical-align: top;
+    border-right: 1px dotted #dfdfdf;
+    font-size: 14pt;
+    font-weight: bold;
+}
+table.form-layout input[type='text'] {
+    font-size: 10pt;
+    height: 25px;
+    padding-left: 15px;
+}
+
+td.field.nome input,
+td.field.cognome input {
+    font-weight: bold;
+    font-size: 12pt;
+}
+td.field.categoria input,
+td.field.classe input {
+    color: green;
+}
+td.field.nomeresp input,
+td.field.cognomeresp input {
+    color: #115CCC;
+}
+td.field.dataconsegna {
+    padding-left: 25px;
+    color: #707070;
+}
+
+td.commands {
+    padding: auto 20px;
+}
+
+

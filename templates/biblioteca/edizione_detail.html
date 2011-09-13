@@ -1,0 +1,161 @@
+{% extends "biblioteca/layout.html" %}
+
+{% block head %}
+    <link rel='stylesheet' type='text/css' href='/static/css/app/edizione/dettagli.css'>
+
+    <script type='text/javascript'>
+
+        $(function() {
+            $("#confirm-delete").dialog(
+                    { autoOpen: false
+                    , modal: true
+                    , title: "Conferma eliminazione"
+                    , width: 550
+                    , height: 250});
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+<div id='info-edizione'>
+    <a  class='btn primary' style='float: right'
+        href='/edizioni/{{ edizione.id }}/modifica'
+        >Modifica</a>
+    <a  class='btn primary' id='delete'
+        style='float: right' href='javascript:void(0)' 
+        onclick='$("#confirm-delete").dialog("open")'
+        >Elimina</a>
+
+
+    <div class='titolo'> {{ edizione.titolo }} </div>
+
+    <div class='autori'>
+    {% if autori|length > 0 %}
+        {% for autore in autori %}
+            {% if forloop.counter > 1 %} - {% endif %}
+            <a  class='autore'
+                href='/ricerca?autori={{ autore.nome }}+{{ autore.cognome }}'
+                >{{ autore.nome }} {{ autore.cognome }}</a>
+        {% endfor %}
+    {% endif %}
+    </div>
+
+    <div class='info'>
+        <a href='/ricerca?casaeditrice={{ edizione.casaeditrice }}'>
+            <span class='casaeditrice'>{{ edizione.casaeditrice }}</span>
+        </a>
+        -
+        <a href='/ricerca?anno={{ edizione.anno }}'>
+            <span class='anno'>{{ edizione.anno }}</span>
+        </a>
+        {% if edizione.isbn|length > 0 %}
+            -
+            <a href='/ricerca?isbn={{ edizione.isbn }}'>
+                <span class='isbn'>ISBN:{{ edizione.isbn }}</span>
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+{% with edizione.copia_set.all as copie %}
+<div style='width: 50%'>
+    <h2>Copie</h2>
+
+    {% if copie|length_is:"0" %}
+        <div class='nessuna-copia'>
+            Nessuna copia in archivio
+            <br>
+            <small>
+                <a href='/edizioni/{{ edizione.id }}/modifica'>
+                    Registra nuove copie nella pagina di modifica &raquo;
+                </a>
+            </small>
+        </div>
+    {% else %}
+
+        <table id='tabella-copie'>
+
+            {% for copia in copie %}
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td class='armadio'>
+                            <a  href='/armadi/{{ copia.armadio }}'
+                                >{{ copia.armadio }}</a>
+                        </td>
+                        <td class='scaffale'>{{ copia.scaffale }}</td>
+                        <td class='posizione'>{{ copia.posizione }}</td>
+
+                        <td class='stato-prestito'>
+                            <a href='/copie/{{ copia.id }}/+prestiti'>
+                                {% with copia.prestito_corrente as prestito %}
+                                    {% if prestito %}
+                                        In prestito a {{ prestito.nome }} {{ prestito.cognome }} &raquo;
+                                    {% else %}
+                                        Disponibile &raquo;
+                                    {% endif %}
+                                {% endwith %}
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan='4' class='dataora'>
+                            Aggiunta il {{ copia.dataora|date:"d/b/y, H:i" }}
+                        </td>
+                    </tr>
+                    {% if copia.note %}
+                        <tr>
+                            <td></td>
+                            <td colspan='4'>
+                                <a class='note-link' href='#' onclick='$("#note-{{copia.id}}").toggle()'>Note &raquo;</a>
+                                <div id='note-{{ copia.id }}' class='note' style='display: none'>
+                                    {{ copia.note|linebreaks }}
+                                </div>
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+        {% endfor %}
+            
+        </table>
+    {% endif %}
+
+</div>
+{% endwith %}
+
+
+
+<div id='confirm-delete' class='dialog'>
+    <div id='question'>
+        <img src='/static/img/warning.png' class='icon'>
+        <div class='body'>
+            <form method='post' action='/edizioni/{{ edizione.id }}/elimina' id='form-delete'>
+                {% csrf_token %}
+                <h1>Sei sicuro di voler eliminare questa edizione?</h1>
+                <p>
+                Verranno anche <b>eliminate le informazioni
+                sulle copie</b> corrispondenti e i <b>relativi prestiti</b>.
+                </p>
+                <ul class='commands'>
+                    <li>
+                        <a  class='btn primary' id='confirm'
+                            href='javascript:void(0)'
+                            onclick='$("#form-delete").submit()'
+                            >Conferma</a>
+                    </li>
+                    <li><a  class='btn primary' id='cancel'
+                            href='javascript:void(0)'
+                            onclick='$("#confirm-delete").dialog("close")'
+                            >Annulla</a></li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+

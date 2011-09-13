@@ -1,0 +1,17 @@
+
+table#lista {
+    border-collapse: collapse;
+    margin: 20px;
+}
+table#lista tr td {
+    border-bottom: 1px solid #eee;
+    padding: 2px 10px;
+    vertical-align: baseline;
+}
+table#lista tbody .edizione .id           { font-size: 12pt; color: #aaa;  font-style: italic; }
+table#lista tbody .edizione .titolo       { font-size: 13pt; font-weight: bold; max-width: 40%;}
+table#lista tbody .edizione .casaeditrice { font-size: 10pt; color: green; }
+table#lista tbody .edizione .isbn         { font-size: 10pt; }
+table#lista tbody .edizione .anno         { font-size: 10pt; }
+
+

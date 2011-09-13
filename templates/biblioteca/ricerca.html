@@ -1,0 +1,70 @@
+{% extends "biblioteca/layout.html" %}
+
+{% block head %}
+    <link rel='stylesheet' type='text/css' href='/static/css/app/ricerca/index.css'>
+{% endblock %}
+
+{% block content %}
+    <h1>Ricerca</h2>
+
+    <div id='simple-search' class='section'>
+        <form method='get' action='/ricerca'>
+            <div class='fake-input' style='margin: 0px auto'>
+                <input type='text' name='q'
+                        onkeypress='if(event.keyCode==13) $("#simple-form form").submit()'>
+                
+                <a  href='javascript:void(0)'
+                    onclick='$("#simple-search form").submit()'>
+                    <img class='icon' src='/static/img/find.png'>
+                </a>
+            </div>
+        </form>
+    </div>
+
+    {% if results %}
+    <div id='results'>
+
+        <h2>
+            <span class='hits'>{{ results|length }}</span>
+            risultat{{ results|pluralize:"o,i" }} per
+            <span class='query'>{{ query }}</span>
+        </h2>
+
+        {% for edizione in results %}
+        <div class='hit'>
+            {% for autore in edizione.autore_set.all %}
+                {% if not forloop.counter == 1 %}/{% endif%}
+                <a class='autore'
+                    href='/ricerca?q={{ autore.nome|urlencode }}+{{ autore.cognome|urlencode }}'
+                    >{{ autore.nome }} {{ autore.cognome }}</a>
+            {% endfor %}
+
+            <br>
+            <a  class='titolo' href='/edizioni/{{ edizione.id }}'
+                >{{ edizione.titolo }}</a>
+            <br>
+            <a class='casaeditrice'
+                href='/ricerca?q={{ edizione.casaeditrice|urlencode }}'
+                >{{ edizione.casaeditrice }}</a>
+
+            {% if edizione.anno %}
+            -
+            <span class='anno'>
+                 {{ edizione.anno }} 
+            </span>
+            {% endif %}
+
+            {% if edizione.isbn %}
+            <span class='isbn'>
+                 ISBN:{{ edizione.isbn }} 
+            </span>
+            {% endif %}
+
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+{% endblock %}
+

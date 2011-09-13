@@ -1,0 +1,36 @@
+
+#error-box {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 50px;
+    border: 1px #dfdfdf solid;
+    border-radius: 5px;
+}
+
+#error-caption {
+    font-size: 12pt;
+    font-weight: bold;
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+
+#traceback-box {
+    display: none;
+    font-family: monospace;
+    font-size: 9pt;
+    margin: 10px 20px;
+    padding: 5px;
+    border-left: 1px dashed #dfdfdf;
+    overflow: scroll;
+}
+
+#traceback-link {
+    float: right;
+}
+
+#trollface {
+    background-image: url('/themes/red/img/trollface.png');
+    width: 150px;
+}
