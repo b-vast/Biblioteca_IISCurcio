@@ -4,13 +4,18 @@
     margin-right: 0;
 }
 
-#tabella-form-info {
-    width: 100%;
+#tabella-form-info { width: 100%; }
+#tabella-form-info th:first-child { width: 8em; }
+#tabella-form-info th {
+    vertical-align: top;
+    padding: 5px;
 }
-#tabella-form-info th:first-child {
-    width: 8em;
+#tabella-form-info td {
+    vertical-align: top;
 }
-
+#tabella-form-info td.error-column {
+    width: 35%;
+}
 
 #tabella-autori {
     margin: 0;
@@ -50,6 +55,7 @@
     position: relative;
     top: 5px;
     margin-left: 10px;
+    width: 5em;
 }
 #tabella-autori tbody tr:hover .delete-row {
     visibility: visible;
@@ -68,49 +74,52 @@
     margin: 5px 20px;
 }
 .copia {
-    border-bottom: 1px solid #dfdfdf;
-    padding: 10px;
+    margin-top: 10px;
+    padding: 5px 10px;
 }
 .copia.invalid {
-    border: 3px solid red;
+    box-shadow: 0px 0px 10px red;
     border-radius: 5px;
 }
-.copia .errorlist {
-    background-color: #fcc;
-    border-radius: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+.copia .row-content {
+    margin-left: 20pt;
+    border-left: 1px dotted #dfdfdf;
+    padding: 10px;
 }
+
+.number {
+    font-size: 24pt;
+    font-weight: bold;
+    color: #aaa;
+    float: left;
+}
+
 .copia input[type='text']{
-    font-size: 20pt;
+    font-size: 14pt;
     border: none;
-    border-bottom: 1px dashed #a0a0a0;
-    width: 1.7em;
-    height: 35px;
+    border-bottom: 1px dotted #a0a0a0;
+    width: 2em;
+    height: 1.2em;
     padding: 0;
     padding-left: 5px;
     margin-right: 10px;
-    overflow: hidden;
+    vertical-align: bottom;
+}
+.copia input[type='text'].invalid {
+    background-color: #FFFFCC;
 }
 .copia .dataora {
     font-size: 10pt;
     color: #a0a0a0;
 }
-.copia #label-note {
-    color: #8f8f8f;
-    font-style: italic;
-    font-size: 10pt;
-    margin-right: 5px;
-    position: relative;
-    bottom: 6px;
-}
+
 .copia textarea {
     padding: 3px 5px;
     font-family: sans-serif;
     font-size: 10pt;
     background-color: inherit;
     border: none;
-    border-left: 1px dotted #a0a0a0;
+    border-bottom: 1px dotted #a0a0a0;
     height: 2em;
     width: 20em;
 }
@@ -120,14 +129,48 @@
     height: 5em;
 }
 .copia .delete-row {
-    display: block;
-    visibility: hidden;
+    display: inline-block;
+    margin: 2px 0 5px 30px;
+    padding: 0px 2px;
+    border: 2px solid transparent;
+    border-radius: 5px;
     font-size: 10pt;
-    text-align: right;
+    visibility: hidden;
 }
-div.copia:hover .delete-row {
-    visibility: visible;
+.copia .delete-row:hover {
+    border: 2px solid #FFC2C2;
 }
+div.copia:hover .delete-row { visibility: visible; }
+
+
+.copia .errors {
+    background-color: #ff3636; 
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+}
+.copia .errors .field {
+    margin: 0 5px;
+    padding: 0 0 2px 0;
+    border-top: 1px dashed #c00000;
+}
+.copia .errors .field:first-child { border: none; }
+.copia .errors .field .name {
+    float: left;
+    width: 4em;
+    font-weight: bold;
+}
+.copia .errors .field .errorlist {
+    margin: 0;
+    margin-left: 4em;
+    padding-left: 2em;
+}
+
+.copia .error .field {
+}
+
+
 #copie .add-row {
     display: block;
     text-align: center;

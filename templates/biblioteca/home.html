@@ -32,9 +32,8 @@
         {% for prestito in prestiti %}
             <div class='prestito'>
                 <div class='data'>
-                    <span class='giorno'>{{ prestito.dataconsegna|date:"d" }}</span>
-                    <br>
-                    <span class='mese'>{{ prestito.dataconsegna|date:"M" }}</span>
+                    <div class='giorno'>{{ prestito.dataconsegna|date:"d" }}</div>
+                    <div class='mese'>{{ prestito.dataconsegna|date:"M" }}</div>
                 </div>
                 <div class='beneficiario'>
                     <a class='link' href='/copie/{{ prestito.copia.id }}/+prestiti'>

@@ -48,38 +48,38 @@
     {% csrf_token %}
 
     <h1>
+        <a  href='#' style='float: right'
+            onclick='$("#main_form").submit()' class='btn primary'
+            >Salva</a>
         {% if object %}
             Modifica edizione
-            <a class='link' href='/edizioni/{{ object.id }}'>Annulla</a>
+            <a class='btn' style='float: right' href='/edizioni/{{ object.id }}'>Annulla</a>
         {% else %}
             Nuova edizione
-            <a class='link' href='/edizioni/aggiungi/googlebooks'>Importa da Google Books</a>
+            <a class='btn' style='float: right' href='/edizioni/aggiungi/googlebooks'>Importa da Google Books</a>
         {% endif %}
-        <a  href='#' onclick='$("#main_form").submit()' class='btn primary'
-            style='float: right; font-family: sans-serif; position: relative; top: 10px'
-            >Salva</a>
     </h1>
 
 
     <h2>Informazioni di base</h2>
-    <div class='section'>
-            <table id='tabella-form-info' class='form-layout'>
-                {% for row in form %}
-                    <tr>
-                        <th>{{ row.label }} &raquo;</th>
-                        <td>{{ row }}</td>
-                    </tr>
-                    {% if row.errors %}
-                    <tr>
-                        <th></th>
-                        <td>
+    <table id='tabella-form-info' class='form-layout'>
+        {% for row in form %}
+            <tr>
+                <th>{{ row.label }} &raquo;</th>
+                <td>{{ row }}</td>
+                {% if row.errors %}
+                <td class='error-column'>
+                    <div class='error popover'>
+                        <div class='left arrow'></div>
+                        <div class='content'>
                             {{ row.errors }}
-                        </td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
-    </div>
+                        </div>
+                    </div>
+                </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
 
     <div style='float: left; width: 40%; overflow: auto'>
         <h2>Autori</h2>
@@ -100,11 +100,24 @@
                     <td>{{ row.cognome }}</td>
                     <td></td>
                 </tr>
+
                 {% if row.errors %}
                 <tr class='errors'>
-                    <td colspan='2'><div style='margin-bottom: 5px; margin-left: 10px;'>{{ row.errors }}</div></td>
+                    {% for column in row %}
+                    <td>
+                        {% if column.errors %}
+                        <div class='error popover'>
+                            <div class='top arrow'></div>
+                            <div class='content'>
+                                {{ column.errors }}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </td>
+                    {% endfor %}
                 </tr>
                 {% endif %}
+
                 {% endfor %}
             </tbody>
         </table>
@@ -123,45 +136,50 @@
                 {% endif %}
                     {{ copia.id }}
 
-                    <table>
-                        <tr>
-                            <td>{{ copia.armadio }}</td>
-                            <td>{{ copia.scaffale }}</td>
-                            <td>{{ copia.posizione }}</td>
-                        </tr>
-                        <tr class='hint'>
-                            <td>Armadio</td>
-                            <td>Scaffale</td>
-                            <td>Posizione</td>
-                        </tr>
-                    </table>
-
-                    <div class='errors'>
-                        {{ copia.errors.armadio }}
-                        {{ copia.errors.scaffale }}
-                        {{ copia.errors.posizione }}
-                    </div>
-
-                    {% if copia.instance.pk %}
-                        <br>
-                        <span class='dataora'>Aggiunta il {{ copia.instance.dataora }}</span>
-                        {{ copia.DELETE }}
-                    {% endif %}
-
-
-                    <br>
-                    <span id='label-note'>Note</span>
-                    {{ copia.note }}
-                    <div class='errors'>
-                        {{ copia.note_errors }}
-                    </div>
-
-                    <br>
-                    <div class='errors'>
-                        {% if copia.non_field_errors %}
-                            {{ copia.non_field_errors }}
+                    <div class='number'>
+                        {% if copia.instance.pk %}
+                            {{ forloop.counter }}
+                        {% else %}
+                            *
                         {% endif %}
                     </div>
+
+                    <div class='row-content'>
+                        <div class='horiz'>
+                            <div>Locazione &raquo;</div>
+                            <div>{{ copia.armadio }}</div>
+                            <div>{{ copia.scaffale }}</div>
+                            <div>{{ copia.posizione }}</div>
+                        </div>
+
+                        <div class='horiz'>
+                            <div>Note &raquo;</div>
+                            {{ copia.note }}
+                        </div>
+
+                        {% if copia.instance.pk %}
+                            <div class='dataora'>Aggiunta il {{ copia.instance.dataora }}</div>
+                            {{ copia.DELETE }}
+                        {% endif %}
+
+                        {% if copia.errors %}
+                            <div class='errors'>
+                            {% for field, errors in copia.errors.items %}
+                                <div class='field'>
+                                    <div class='name'>{{ field|capfirst }}</div>
+                                    {{ errors }}
+                                </div> 
+                                <script type='text/javascript'>
+                                    $(function() {
+                                        $("#id_{{ copia.prefix }}-{{ field }}")
+                                            .addClass('invalid');
+                                    });
+                                </script>
+                            {% endfor %}
+                            </div> 
+                        {% endif %}
+                    </div>
+
                 </div>
             {% endfor %}
         </div>

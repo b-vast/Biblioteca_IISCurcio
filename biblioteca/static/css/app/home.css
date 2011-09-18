@@ -3,22 +3,22 @@
     padding: 20px 20px;
     border-bottom: 1px solid #dfdfdf;
 }
-#ricerca form { margin: 0; }
 
 .prestito { overflow: auto; }
 .prestito .data {
     float: left;
     color: #a0a0a0;
-    line-height: 18pt;
     text-align: center;
     padding-right: 5px;
     border-right: 1px dotted #dfdfdf;
     margin-right: 5px;
 }
 .prestito .data .giorno { font-size: 24pt; }
+.prestito .data .mese { position: relative; bottom: 7px; }
+
 
 .prestito .beneficiario {
-    padding-top: 4px;
+    padding-top: 9px;
 }
 .prestito .nome,
 .prestito .cognome {

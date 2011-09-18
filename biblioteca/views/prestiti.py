@@ -45,6 +45,7 @@ def modifica(request, pk):
     else:
         form = PrestitoForm(instance=prestito)
 
+
     context_data = {
         'form': form,
         'copia': prestito.copia

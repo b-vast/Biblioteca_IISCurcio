@@ -53,9 +53,6 @@
 
         {% for prestito in object_list %}
         <div class='prestito'>
-            <a class='dettagli-link' href='/prestiti/{{ prestito.id }}'>
-                Dettagli &raquo;
-            </a>
             <div class='data'>
                 <span class='consegna'>{{ prestito.dataconsegna|date:"d M y" }}</span>
                 {% if prestito.datarestituzione %}

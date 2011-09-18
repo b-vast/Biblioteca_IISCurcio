@@ -48,8 +48,18 @@ td.field.dataconsegna {
     color: #707070;
 }
 
+.error.popover {
+    position: relative;
+    bottom: 10px;
+}
+.error.popover .arrow {
+    position: relative;
+    left: 20px;
+}
+
 td.commands {
     padding: auto 20px;
 }
+
 
 

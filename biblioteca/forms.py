@@ -5,6 +5,7 @@ from django.forms.models    import inlineformset_factory
 from biblioteca.models  import * 
 from biblioteca.widgets import ContentEditableWidget
 
+
 class EdizioneForm(ModelForm):
     class Meta:
         model = Edizione

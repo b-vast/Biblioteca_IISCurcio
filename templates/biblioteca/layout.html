@@ -39,37 +39,34 @@
         {% endif %}
             
         <div id='topbar'>
-            <div id='topbar-content'>
-                <div id='tools'>
+
+                <a class='home' href='/'> 
+                    <h1>Biblioteca Scolastica</h1>
+                </a>
+                <h2>Istituto Istruzione Superiore "G.Curcio", Ispica</h2>
+                
+                <div class='links'>
                     <div id='input-container'>
                         <form action='/ricerca' method='get'>
                             <div class='fake-input'>
                                 <input type='text' name='q'
                                         placeholder='Ricerca'>
-                                <img class='icon' src='/static/img/find-inv.png'
+                                <img class='icon' src='/static/img/find.png'
+                                    onclick='$("#input-container form").submit()'
                                     style='opacity: 0.7'>
                             </div>
                         </form>
                     </div>
-                    <ul>
-                        <li><a href='/armadi'>Armadi</a></li>
-                        <li><a href='/edizioni/aggiungi'>Aggiungi</a></li>
-                        <li><a href='/prestiti'>Prestiti</a></li>
-                    </ul>
+                    <a href='/armadi'>Armadi</a>
+                    <a href='/prestiti'>Prestiti</a>
+                    <a href='/edizioni/aggiungi'>
+                        <img src='/static/img/add.png'>
+                    </a>
                 </div>
-                <div id='branding'>
-                    <a href='/'><h1>Biblioteca Scolastica</h1></a>
-                    <h2>Istituto Istruzione Superiore "G.Curcio", Ispica</h2>
-                </div>
-            </div>
 
-            {% if alert %}
-            <div class='alert-message'>
-                {{ alert }}
-                <a href='javascript:void(0)' class='close'>&times;</a>
-            </div>
-            {% endif %}
         </div>
+
+
         <div id='content' class='centered'>
             {% block content %}{% endblock %}
         </div>

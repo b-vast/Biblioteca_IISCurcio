@@ -54,13 +54,15 @@ def aggiungi(request):
         if form.is_valid():
             form.save()
             edizione = form.instance
+        else:
+            edizione = None
 
-            fs_autori = Autori_InlineFormSet(request.POST, instance=edizione, prefix='autori')
-            fs_copie = Copie_InlineFormSet(request.POST, instance=edizione, prefix='copie')
-            if fs_autori.is_valid() and fs_copie.is_valid():
-                fs_autori.save()
-                fs_copie.save()
-                return HttpResponseRedirect('/edizioni/'+str(edizione.id))
+        fs_autori = Autori_InlineFormSet(request.POST, instance=edizione, prefix='autori')
+        fs_copie = Copie_InlineFormSet(request.POST, instance=edizione, prefix='copie')
+        if edizione and fs_autori.is_valid() and fs_copie.is_valid():
+            fs_autori.save()
+            fs_copie.save()
+            return HttpResponseRedirect('/edizioni/'+str(edizione.id))
 
     else:
         form = EdizioneForm(initial=request.GET.items())

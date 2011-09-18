@@ -42,13 +42,12 @@
     </div>
 
     <div class='info'>
-        <a href='/ricerca?casaeditrice={{ edizione.casaeditrice }}'>
-            <span class='casaeditrice'>{{ edizione.casaeditrice }}</span>
-        </a>
+        <a  href='/ricerca?casaeditrice={{ edizione.casaeditrice }}'
+            ><span class='casaeditrice'
+                >{{ edizione.casaeditrice }}</span></a>
         -
-        <a href='/ricerca?anno={{ edizione.anno }}'>
-            <span class='anno'>{{ edizione.anno }}</span>
-        </a>
+        <a href='/ricerca?anno={{ edizione.anno }}'
+            ><span class='anno'>{{ edizione.anno }}</span></a>
         {% if edizione.isbn|length > 0 %}
             -
             <a href='/ricerca?isbn={{ edizione.isbn }}'>

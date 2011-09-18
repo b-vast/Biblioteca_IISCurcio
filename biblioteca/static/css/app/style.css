@@ -6,6 +6,8 @@ html, body {
 }
 
 textarea, input { outline: none; font-family: sans-serif; }
+form { margin: 0; }
+h2 { margin: 0.83em auto; }
 
 /** Text styles */
 .highlight {
@@ -26,7 +28,7 @@ textarea, input { outline: none; font-family: sans-serif; }
 }
 
 #content h1 {
-    font-size: 28pt;
+    font-size: 22pt;
     font-family: 'Rokkitt', 'Segoe UI', sans-serif;
     font-weight: lighter;
     color: #115CCC;
@@ -35,7 +37,7 @@ textarea, input { outline: none; font-family: sans-serif; }
 }
 
 #content h1 .link {
-    font-size: 14pt;
+    font-size: 11pt;
     margin-left: 1em;
     border-left: 1px solid #a0a0a0;
     padding-left: 5px;
@@ -43,7 +45,7 @@ textarea, input { outline: none; font-family: sans-serif; }
 
 #content h2 {
     font-family: 'Oswald', 'Segoe UI', sans-serif;
-    font-size: 16pt;
+    font-size: 14pt;
     font-weight: bold;
     color: #3d3d3d;
 }
@@ -109,11 +111,6 @@ input[type="text"] {
 }
 
 /** Layout */
-.centered {
-    margin-left: auto;
-    margin-right: auto;
-}
-
 
 .section {
     margin-left: 6em;
@@ -136,15 +133,6 @@ input[type="text"] {
     font-size: 22pt;
 }
 
-.tooltip {
-    display: none;
-    text-align: center;
-    background-color: black;
-    color: white;
-    border-radius: 5px;
-    padding: 10px;
-}
-
 .alert-message {
     background-color: #e22;
     border: 1px solid #f00;
@@ -156,19 +144,64 @@ input[type="text"] {
     float: right;
 }
 
+/*
 .errorbox {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     border 2px solid red;
 }
+*/
+
+.horiz * {
+    display: inline-block;
+    vertical-align: middle; 
+}
+
+.popover {
+    padding: 0;
+    font-size: 9pt;
+}
+.popover .arrow { width: 0; height: 0; }
+.popover .arrow.left {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid black;
+    float: left;
+    position: relative;
+    top: 6px;
+    left: 1px;
+}
+.popover.error .arrow.left { border-right-color: #f00000; }
+.popover .arrow.top {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid black;
+    float: left;
+    position: relative;
+    left: 15px;
+    bottom: 5px;
+}
+.popover.error .arrow.top { border-bottom-color: #f00000; }
+.popover .content {
+    margin: 0;
+    margin-left: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.popover.error .content {
+    background-color: #f00000;
+    color: white;
+}
+.popover ul { margin: 0; padding-left: 25px; }
+
 
 /* forms & form layouts */
 .form-layout {
     border: none;
     margin: 10px auto;
 }
-.form-layout input[type='text'] {
+input[type='text'] {
     width: 100%;
     height: 25px;
     border: 1px solid #e3e3e3;
@@ -177,8 +210,8 @@ input[type="text"] {
 .form-layout textarea {
     height: 100px;
 }
-.form-layout input[type='text']:focus,
-.form-layout textarea:focus {
+input[type='text']:focus,
+textarea:focus {
     box-shadow: 0px 0px 8px #bdf;
 }
 /*
