@@ -100,3 +100,4 @@ def elimina(request, pk):
     return HttpResponseRedirect('/edizioni')
 
 
+

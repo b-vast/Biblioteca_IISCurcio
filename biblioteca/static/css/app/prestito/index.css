@@ -58,50 +58,23 @@
     font-size: 12pt;
     margin-bottom: 5px;
     border: 1px solid white;
-    padding: 0 5px;
+    padding: 5px;
+}
+.prestito div:first-child {
+    padding: 5px 0px;
+    margin-left: 0;
+}
+.prestito div {
+    margin-left: 20px;
+    line-height: 15px;
+    padding: 0px 0px;
 }
 
-.prestito .dettagli-link {
-    background-color: #115CCC;
-    border-radius: 12px 12px 12px 12px;
-    color: white;
-    float: right;
-    font-size: 10pt;
-    font-weight: bold;
-    height: 20px;
-    padding: 3px 10px 0;
-    position: relative;
-    text-decoration: none;
-    top: 5px;
-    visibility: hidden;
-}
-.prestito:hover {
-    background-color: #f0f6f7;
-    border: 1px solid #addbf7;
-}
-.prestito:hover .dettagli-link { visibility: visible; }
-
-.prestito .data {
-    float: left;
-    max-width: 8em;
-    vertical-align: baseline;
-    padding-top: 6px;
-}
-.prestito .data .consegna       { color: #888; }
-.prestito .data .restituzione   { color: #e00; }
-.prestito .data .durata         { font-size: 9pt; }
-
-.prestito .beneficiario {
-    text-decoration: none;
-    padding: 3px 5px;
+.prestito .link {
     color: black;
+    font-size: 14pt;
 }
 
-.prestito .info {
-    margin-left: 8em;
-}
-.prestito .copia {
-}
 .prestito .nome,
 .prestito .cognome {
     font-size: 14pt;
@@ -112,15 +85,33 @@
     font-size: 12pt;
     color: green;
 }
+.prestito .beneficiario:hover {
+    
+}
 
-.prestito .locazione { float: left; max-width: 5.2em; }
+.prestito .data { font-size: 10.5pt; }
+.prestito .data .consegna       { color: #888; }
+.prestito .data .restituzione   { color: #e00; }
+.prestito .data .durata         { font-size: 10pt; }
+
+.prestito .info {
+    margin-left: 8em;
+}
+.prestito .copia {
+}
+
+.prestito .locazione {
+    float: left;
+    max-width: 5.2em;
+}
 .prestito .locazione span {
-    font-size: 12pt;
+    font-size: 11pt;
     font-weight: bold;
     border-right: 1px dotted #a0a0a0;
-    padding: 0 0.1em;
+    padding: 0;
+    margin: 0;
     padding-right: 0.5em;
-    padding-left: 0.3em;
+    margin-right: 0.3em;
 }
 .prestito .armadio {
     border-left: none;
@@ -129,7 +120,9 @@
 
 .prestito .titolo {
     display: block;
-    margin-left: 5.2em;
+    margin-left: 5em;
     padding-left: 8px;
+    font-size: 10pt;
+    padding-top: 0.5em;
 }
 

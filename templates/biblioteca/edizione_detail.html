@@ -35,7 +35,7 @@
         {% for autore in autori %}
             {% if forloop.counter > 1 %} - {% endif %}
             <a  class='autore'
-                href='/ricerca?autori={{ autore.nome }}+{{ autore.cognome }}'
+                href='/ricerca?autore__nome={{ autore.nome|urlencode }}&autore__cognome={{ autore.cognome|urlencode }}'
                 >{{ autore.nome }} {{ autore.cognome }}</a>
         {% endfor %}
     {% endif %}
