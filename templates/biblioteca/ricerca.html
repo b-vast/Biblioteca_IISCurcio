@@ -26,25 +26,31 @@
 
         <h2>
             <span class='hits'>{{ results|length }}</span>
-            risultat{{ results|pluralize:"o,i" }} per
-            <span class='query'>{{ query }}</span>
+            risultat{{ results|pluralize:"o,i" }}
+            {% if query %}
+                per <span class='query'>{{ query }}</span>
+            {% endif %}
         </h2>
 
         {% for edizione in results %}
         <div class='hit'>
+            <div>
             {% for autore in edizione.autore_set.all %}
                 {% if not forloop.counter == 1 %}/{% endif%}
                 <a class='autore'
-                    href='/ricerca?q={{ autore.nome|urlencode }}+{{ autore.cognome|urlencode }}'
+                    href='/ricerca?autore__nome={{ autore.nome|urlencode }}&autore__cognome={{ autore.cognome|urlencode }}'
                     >{{ autore.nome }} {{ autore.cognome }}</a>
             {% endfor %}
+            </div>
 
-            <br>
-            <a  class='titolo' href='/edizioni/{{ edizione.id }}'
-                >{{ edizione.titolo }}</a>
-            <br>
+            <div>
+                <a  class='titolo' href='/edizioni/{{ edizione.id }}'
+                    >{{ edizione.titolo }}</a>
+            </div>
+
+            <div>
             <a class='casaeditrice'
-                href='/ricerca?q={{ edizione.casaeditrice|urlencode }}'
+                href='/ricerca?casaeditrice={{ edizione.casaeditrice|urlencode }}'
                 >{{ edizione.casaeditrice }}</a>
 
             {% if edizione.anno %}
@@ -59,6 +65,7 @@
                  ISBN:{{ edizione.isbn }} 
             </span>
             {% endif %}
+        </div>
 
         </div>
         {% endfor %}

@@ -58,5 +58,8 @@
 
 .prestito .titolo {
     padding-left: 8px;
+    width: 16em;
+    padding-top: 0.25em;
+    vertical-align: top;
 }
 

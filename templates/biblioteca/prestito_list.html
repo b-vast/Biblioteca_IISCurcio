@@ -53,10 +53,20 @@
 
         {% for prestito in object_list %}
         <div class='prestito'>
+            <div class='beneficiario'>
+                <a  class='link'
+                    href='/prestiti/{{ prestito.id }}'
+                    >
+                    <span class='nome'>{{ prestito.nome }}</span>
+                    <span class='cognome'>{{ prestito.cognome }}</span>
+                    <span class='categoria'>{{ prestito.categoria }}</span>
+                    <span class='classe'>{{ prestito.classe }}</span>
+                </a>
+            </div>
             <div class='data'>
                 <span class='consegna'>{{ prestito.dataconsegna|date:"d M y" }}</span>
                 {% if prestito.datarestituzione %}
-                <br>
+                - 
                 <span class='restituzione'>{{ prestito.datarestituzione|date:"d M y" }}</span>
                 {% else %}
                 <span class='durata'>
@@ -64,23 +74,15 @@
                 </span>
                 {% endif %}
             </div>
-            <div class='info'>
-                <div class='beneficiario'>
-                    <span class='nome'>{{ prestito.nome }}</span>
-                    <span class='cognome'>{{ prestito.cognome }}</span>
-                    <span class='categoria'>{{ prestito.categoria }}</span>
-                    <span class='classe'>{{ prestito.classe }}</span>
+            <div class='copia'>
+                <div class='locazione'>
+                    <span class='armadio'>{{ prestito.copia.armadio }}</span>
+                    <span class='scaffale'>{{ prestito.copia.scaffale }}</span>
+                    <span class='posizione'>{{ prestito.copia.posizione }}</span>
                 </div>
-                <div class='copia'>
-                    <div class='locazione'>
-                        <span class='armadio'>{{ prestito.copia.armadio }}</span>
-                        <span class='scaffale'>{{ prestito.copia.scaffale }}</span>
-                        <span class='posizione'>{{ prestito.copia.posizione }}</span>
-                    </div>
-                    <a  href='/edizioni/{{prestito.copia.edizione.id}}'
-                        class='titolo'
-                        >{{ prestito.copia.edizione.titolo }}</a>
-                </div>
+                <a  href='/edizioni/{{prestito.copia.edizione.id}}'
+                    class='titolo'
+                    >{{ prestito.copia.edizione.titolo }}</a>
             </div>
         </div>
         {% endfor %}

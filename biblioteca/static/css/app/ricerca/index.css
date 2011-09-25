@@ -25,10 +25,12 @@
     vertical-align: baseline;
     width: 100%;
 }
+/*
 .hit:hover {
     background-color: #f0f6f7;
     border: 1px solid #ADDBF7;
 }
+    */
 .hit .id {
     width: 2em;
     font-size: 12pt;
