@@ -41,30 +41,27 @@
     color: #aaa;
 }
 
-#input-container {
-    display: inline-block;
-    position: relative;
-    margin: auto 10px;
-}
-#input-container .fake-input {
+#topbar .fake-input {
     height: 24px;
     width: 178px;
     background-color: #fafafa;
     border-radius: 3px;
+    margin: 0px 10px;
 }
-#input-container .fake-input input[type='text'] {
+#topbar .fake-input input[type='text'] {
     height: 25px;
-    width: 150px;
+    width: 140px;
     background: none;
     color: #444;
     font-size: 10pt;
 }
-#input-container .fake-input .icon {
-    float: right;
+#topbar .fake-input .icon {
+    position: absolute;
+    margin-left: 150px;
     width: 15px;
     height: 15px;
 }
-#input-container .fake-input input[type='text'] {
+#topbar .fake-input input[type='text'] {
     height: 25px;
     width: 150px;
 }
@@ -73,7 +70,8 @@
 #topbar .links {
     position: absolute;
     right: 40px;
-    top: -2;
+    top: -4px;
+    font-size: 15px;
 }
 #topbar .links a {
     display: inline-block;

@@ -1,9 +1,9 @@
 html, body {
-    margin: 0;
-    font-family: 'Droid Sans', 'Segoe UI', sans-serif;
+    margin: 0; 
     background-color: white;
     cursor: default;
 }
+* { font-family: 'Droid Sans', 'Segoe UI', sans-serif; }
 
 textarea, input { outline: none; font-family: sans-serif; }
 form { margin: 0; }
@@ -30,7 +30,6 @@ h2 { margin: 0.83em auto; }
 #content h1 {
     font-size: 22pt;
     font-family: 'Rokkitt', 'Segoe UI', sans-serif;
-    font-weight: lighter;
     color: #115CCC;
     margin: 0;
     margin-top: 10px;
@@ -201,17 +200,21 @@ input[type="text"] {
     border: none;
     margin: 10px auto;
 }
-input[type='text'] {
-    width: 100%;
-    height: 25px;
+input[type="text"], textarea {
     border: 1px solid #e3e3e3;
     border-radius: 3px;
 }
-.form-layout textarea {
+input[type='text'] {
+    width: 100%;
+    height: 25px;
+}
+textarea { 
+    padding: 5px;
     height: 100px;
 }
 input[type='text']:focus,
 textarea:focus {
+    border-color: #acf;
     box-shadow: 0px 0px 8px #bdf;
 }
 /*
@@ -291,7 +294,6 @@ a.btn.primary,
     float: left;
     width: 48px;
     position: relative;
-    top: 20px;
 }
 .dialog .body {
     margin: 10px;
@@ -301,13 +303,15 @@ a.btn.primary,
 .dialog .body h1 {
     margin: 0;
     font-size: 18pt;
-    font-weight: lighter;
     color: #115CCC;
+    overflow: hidden;
 }
-.dialog .body .commands { list-style-type: none; }
-.dialog .body .commands li { display: inline; }
-.dialog button {
-    font-family: inherit;
+.dialog .body .commands   {
+    border-top: 1px solid #dfdfdf;
+    padding-top: 12px;
+    text-align: center;
 }
+.dialog .body .commands * { display: inline-block; }
+.dialog button { font-family: inherit; }
 
 

@@ -10,8 +10,8 @@
                     { autoOpen: false
                     , modal: true
                     , title: "Conferma eliminazione"
-                    , width: 550
-                    , height: 250});
+                    , width: 650
+                    , height: 200});
         });
     </script>
 {% endblock %}
@@ -137,17 +137,15 @@
                 Verranno anche <b>eliminate le informazioni
                 sulle copie</b> corrispondenti e i <b>relativi prestiti</b>.
                 </p>
-                <ul class='commands'>
-                    <li>
-                        <a  class='btn primary' id='confirm'
-                            href='javascript:void(0)'
-                            onclick='$("#form-delete").submit()'
-                            >Conferma</a>
-                    </li>
-                    <li><a  class='btn primary' id='cancel'
+                <div class='commands'>
+                    <a  class='btn primary' id='confirm'
+                        href='javascript:void(0)'
+                        onclick='$("#form-delete").submit()'
+                        >Conferma</a>
+                    <a  class='btn primary' id='cancel'
                             href='javascript:void(0)'
                             onclick='$("#confirm-delete").dialog("close")'
-                            >Annulla</a></li>
+                            >Annulla</a>
                 </ul>
             </form>
         </div>

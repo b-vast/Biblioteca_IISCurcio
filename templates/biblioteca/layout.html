@@ -45,18 +45,16 @@
                 </a>
                 <h2>Istituto Istruzione Superiore "G.Curcio", Ispica</h2>
                 
-                <div class='links'>
-                    <div id='input-container'>
-                        <form action='/ricerca' method='get'>
-                            <div class='fake-input'>
-                                <input type='text' name='q'
-                                        placeholder='Ricerca'>
-                                <img class='icon' src='/static/img/find.png'
-                                    onclick='$("#input-container form").submit()'
-                                    style='opacity: 0.7'>
-                            </div>
-                        </form>
-                    </div>
+                <div class='links horiz'>
+                    <form action='/ricerca' method='get'>
+                        <div class='fake-input'>
+                            <img class='icon' src='/static/img/find.png'
+                                onclick='$("#input-container form").submit()'
+                                style='opacity: 0.7'>
+                            <input type='text' name='q'
+                                    placeholder='Ricerca'>
+                        </div>
+                    </form>
                     <a href='/armadi'>Armadi</a>
                     <a href='/prestiti'>Prestiti</a>
                     <a href='/edizioni/aggiungi'>
