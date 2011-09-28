@@ -2,16 +2,19 @@
 from django.template  import RequestContext
 from django.shortcuts import render_to_response
 
-from biblioteca.search import search
+import biblioteca.search 
 
 def ricerca(request):
 
     if len(request.GET) > 0:
-        context_data =  { 'results': search(request.GET) }
+        context_data = {
+            'done' : True,
+            'results': biblioteca.search.search(request.GET)
+        }
         if request.GET.has_key('q'):
             context_data['query'] = request.GET['q']
     else:
-        context_data = {}
+        context_data = { 'done': False }
 
     return render_to_response("biblioteca/ricerca.html", context_data,
             context_instance=RequestContext(request))
