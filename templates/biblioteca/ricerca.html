@@ -1,7 +1,7 @@
 {% extends "biblioteca/layout.html" %}
 
 {% block head %}
-    <link rel='stylesheet' type='text/css' href='/static/css/app/ricerca/index.css'>
+    <link rel='stylesheet' type='text/css' href='/static/css/app/ricerca.css'>
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,9 @@
         <form method='get' action='/ricerca'>
             <div class='fake-input' style='margin: 0px auto'>
                 <input type='text' name='q'
-                        onkeypress='if(event.keyCode==13) $("#simple-form form").submit()'>
+                onkeypress='if(event.keyCode==13) $("#simple-form form").submit()'
+                {% if query %}value="{{ query }}"{% endif %}
+                >
                 
                 <a  href='javascript:void(0)'
                     onclick='$("#simple-search form").submit()'>
@@ -21,7 +23,7 @@
         </form>
     </div>
 
-    {% if results %}
+    {% if done %}
     <div id='results'>
 
         <h2>

@@ -111,6 +111,23 @@
     position: relative;
     font-size: 10pt;
     width: 1000px;
+    min-height: 85%;
     margin: auto;
+    overflow: auto;
 }
+
+#footer {
+    clear: both;
+    font-size: 8pt;
+    width: 1000px;
+    margin: 20px auto;
+    padding: 5px 30px;
+    border-top: 1px solid #dfdfdf;
+    color: #aaa;
+    font-style: italic;
+}
+#footer a {
+    color: #555;
+}
+
 
