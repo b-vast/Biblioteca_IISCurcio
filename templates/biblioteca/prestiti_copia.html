@@ -21,19 +21,12 @@
         {% endif %}
         -->
 
-        {% if not prestito %}
-            {% if mode == 'copia' %}
-                <div class='nessun-prestito'>
-                    Nessun prestito in corso.
-                    <br>
-                    <a href='/copie/{{ copia.id }}/+prestiti/aggiungi'>Registra un nuovo prestito &raquo;</a>
-                </div>
-            {% else %}
-                <!-- Never reached -->
-                <div class='nessun-prestito'>
-                    Nessun prestito
-                </div>
-            {% endif %}
+        {% if not prestito and mode == 'copia' %}
+            <div class='nessun-prestito'>
+                Nessun prestito in corso.
+                <br>
+                <a href='/copie/{{ copia.id }}/+prestiti/aggiungi'>Registra un nuovo prestito &raquo;</a>
+            </div>
         {% else %}
 
             <div class='info-base'>
@@ -65,10 +58,12 @@
                     <div class='restituito'>Restituito</div>
                     {% with prestitocorrente=prestito.copia.prestito_corrente %}
                         {% if not prestitocorrente %}
-                        <a href='/copie/{{ copia.id }}/+prestiti/aggiungi'>Registra un nuovo prestito &raquo;</a>
+                        <div class='nuovo'>
+                            <a href='/copie/{{ copia.id }}/+prestiti/aggiungi'>Registra un nuovo prestito &raquo;</a>
+                        </div>
                         {% else %}
                         <div class='bloccato'>
-                            Questo libro al momento &egrave; in prestito a
+                            Questo libro al momento &egrave; in prestito a<br>
                             <a  href='/copie/{{ copia.id }}/+prestiti'
                                 style='white-space: nowrap'>
                                 {{ prestitocorrente.nome }} {{ prestitocorrente.cognome }}

@@ -35,12 +35,12 @@
         <img class='active' src='/static/img/find-inv.png'>
     </div>
 
-    <div id='searchform' style='display: none'>
+    <div id='searchform' style='display: none'> 
             <form method='get'>
-                <div id='old' class='checkbox'>
+                <label id='restituiti'>
                     <input type='checkbox' name='old'>
                     <span>Anche gi&agrave; restituiti</span>
-                </div>
+                </label>
                 <div class='fake-input'>
                         <input type='text' name='q'>
                         <img class='icon' src='/static/img/find.png'
@@ -68,11 +68,10 @@
                 {% if prestito.datarestituzione %}
                 - 
                 <span class='restituzione'>{{ prestito.datarestituzione|date:"d M y" }}</span>
-                {% else %}
+                {% endif %}
                 <span class='durata'>
                     ({{ prestito.durata|timedelta:"%d giorni" }})
                 </span>
-                {% endif %}
             </div>
             <div class='copia'>
                 <div class='locazione'>

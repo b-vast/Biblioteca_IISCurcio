@@ -2,3 +2,4 @@
 /static/
 *.sqlite*
 lighttpd.conf
+/dev-stuff/

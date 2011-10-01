@@ -17,7 +17,7 @@
     <body>
 
         {% if debug %}
-            <div id='topleft-items'>
+            <div id='debug-ticker'>
                 <div id='date'>{% now "d-b-Y" %}</div>
                 <div id='debug-msg'>Modalit&agrave; debug</div>
                 <div id='db-debug'>
@@ -46,10 +46,10 @@
                 <h2>Istituto Istruzione Superiore "G.Curcio", Ispica</h2>
                 
                 <div class='links horiz'>
-                    <form action='/ricerca' method='get'>
+                    <form id='topbar-ricerca' action='/ricerca' method='get'>
                         <div class='fake-input'>
                             <img class='icon' src='/static/img/find.png'
-                                onclick='$("#input-container form").submit()'
+                                onclick='$("form#topbar-ricerca").submit()'
                                 style='opacity: 0.7'>
                             <input type='text' name='q'
                                     placeholder='Ricerca'>

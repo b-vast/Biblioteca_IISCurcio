@@ -65,8 +65,9 @@
     border: 2px solid #ee0000;
     border-radius: 12px;
 }
-#commands .bloccato {
-    margin-left: 100px;
+#commands .bloccato { margin-left: 100px; }
+#commands .nuovo {
+    margin: 7px 0 0 100px;
 }
 
 #area-prestiti {

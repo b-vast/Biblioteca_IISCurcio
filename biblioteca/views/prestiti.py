@@ -6,17 +6,22 @@ from django.template                import RequestContext
 
 from biblioteca.models  import *
 from biblioteca.forms   import *
-from biblioteca.widgets import ContentEditableWidget
+from biblioteca.search  import prestiti_search
 
 import datetime
 
 def lista(request):
-    solo_restituiti = not request.GET.get('old')
+    solo_non_restituiti = not request.GET.get('old', False)
+    
+    if request.GET.has_key('q'):
+        prestiti = prestiti_search(request.GET)
+    else:
+        prestiti = Prestito.objects.all()
+        if solo_non_restituiti:
+            prestiti = prestiti.filter(datarestituzione__isnull=True)
+        prestiti = prestiti.order_by('-dataconsegna')
 
-    objects = Prestito.objects.order_by('-dataconsegna')
-    if solo_restituiti: objects = objects.filter(datarestituzione__isnull=True)
-
-    context_data = { 'object_list': objects }
+    context_data = { 'object_list': prestiti }
     return render_to_response('biblioteca/prestito_list.html', context_data)
 
 def dettagli(request, pk):
