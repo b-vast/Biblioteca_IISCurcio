@@ -4,12 +4,16 @@ from biblioteca.models import *
 
 ### TODO: Use full-text search 
 
-def prestiti_simple_search(query, solo_non_restituiti):
+def prestiti_simple_search(query, solo_non_restituiti=True):
     words = query.split()
 
     results = {}
 
+    queryset = Prestito.objects
+    if solo_non_restituiti:
+        queryset = queryset.filter(datarestituzione__isnull=True)
     for word in words:
+        q = Q()
         for field in '''nome cognome categoria classe
                         nomeresp cognomeresp note
                         copia__edizione__titolo
@@ -18,25 +22,16 @@ def prestiti_simple_search(query, solo_non_restituiti):
                         copia__edizione__autore__cognome
                      '''.split():
             kwargs = { field+'__icontains' : word }
-            if solo_non_restituiti:
-                kwargs['datarestituzione__isnull'] = True
-            prestiti = Prestito.objects.filter(**kwargs)
-            for p in prestiti:
-                if not results.has_key(p.id):
-                    results[p.id] = 1
-                else:
-                    results[p.id] += 1
+            q = q | Q(**kwargs)
+        queryset = queryset.filter(q)
 
-    results = results.items()
-    results.sort(cmp=lambda a, b: cmp(b[1], a[1]))
-    return [ Prestito.objects.get(pk=id) for id, score in results ]
+    return queryset
 
 def prestiti_search(params):
-    if params.has_key('q'):
-        solo_non_restituiti = not params.get('old', False)
-        return prestiti_simple_search(params['q'], solo_non_restituiti)
-    else:
-        raise ValueError('missing parameter "q"') # TODO replace with advanced search
+    assert params.has_key('query'), \
+        'missing parameter "query"' # TODO replace with advanced search
+    solo_non_restituiti = not params.get('restituiti', False)
+    return prestiti_simple_search(params['query'], solo_non_restituiti)
 
 def edizioni_simple_search(query):
     words = query.split()

@@ -29,20 +29,34 @@
 
 <div id='container'>
 
-    <div id='searchbtn'
-        onclick='toggleSearch()'>
+    <div id='searchbtn' onclick='toggleSearch()'
+         {% if search %}class='active'{% endif %}>
         <img class='inactive' src='/static/img/find.png'>
         <img class='active' src='/static/img/find-inv.png'>
     </div>
 
+    {% if search %}
+    <div id='searchform' class='active'>
+    {% else %}
     <div id='searchform' style='display: none'> 
+    {% endif %}
             <form method='get'>
+                {{ form.csrf_token }}
+                <div id='ordine'>
+                    Ordina per:<br>
+                    {{ form.order }}
+                </div>
                 <label id='restituiti'>
-                    <input type='checkbox' name='old'>
+                    <!-- <input type='checkbox' name='old'
+                        {% if request.GET.old %}checked='true'{% endif %}>
+                        -->
+                    {{ form.restituiti }}
                     <span>Anche gi&agrave; restituiti</span>
                 </label>
                 <div class='fake-input'>
-                        <input type='text' name='q'>
+                        {{ form.query }}
+                        <!-- <input type='text' name='q'
+                        {% if search %}value='{{ query }}'{% endif %}> -->
                         <img class='icon' src='/static/img/find.png'
                             onclick='$("#searchform form").submit()'>
                 </div>

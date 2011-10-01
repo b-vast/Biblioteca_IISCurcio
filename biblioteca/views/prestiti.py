@@ -11,18 +11,29 @@ from biblioteca.search  import prestiti_search
 import datetime
 
 def lista(request):
-    solo_non_restituiti = not request.GET.get('old', False)
+    form_ricerca = RicercaPrestitiForm(request.GET)
     
-    if request.GET.has_key('q'):
-        prestiti = prestiti_search(request.GET)
-    else:
-        prestiti = Prestito.objects.all()
-        if solo_non_restituiti:
-            prestiti = prestiti.filter(datarestituzione__isnull=True)
-        prestiti = prestiti.order_by('-dataconsegna')
+    context_data = { 'form' : form_ricerca }
+    if form_ricerca.is_valid():
+        search_params = form_ricerca.cleaned_data
 
-    context_data = { 'object_list': prestiti }
-    return render_to_response('biblioteca/prestito_list.html', context_data)
+        context_data['search'] = len(request.GET) > 0
+        prestiti = prestiti_search(form_ricerca.cleaned_data)
+
+        order = search_params['order']
+        if order == 'consegna':
+            prestiti = prestiti.order_by('-dataconsegna')
+        elif order == 'restituzione':
+            prestiti = prestiti.order_by('-datarestituzione')
+        elif order == 'beneficiario':
+            prestiti = prestiti.order_by('cognome', 'nome')
+    else:
+        prestiti = Prestito.objects.filter(datarestituzione__isnull=True)
+
+    context_data['object_list'] = prestiti
+
+    return render_to_response('biblioteca/prestito_list.html', context_data,
+                                context_instance=RequestContext(request))
 
 def dettagli(request, pk):
     prestito = get_object_or_404(Prestito, pk=pk)
