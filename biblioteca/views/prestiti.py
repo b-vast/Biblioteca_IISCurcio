@@ -10,6 +10,7 @@ from biblioteca.search  import prestiti_search
 
 import datetime
 
+
 def lista(request):
     form_ricerca = RicercaPrestitiForm(request.GET)
     
@@ -35,6 +36,7 @@ def lista(request):
     return render_to_response('biblioteca/prestito_list.html', context_data,
                                 context_instance=RequestContext(request))
 
+
 def dettagli(request, pk):
     prestito = get_object_or_404(Prestito, pk=pk)
     context_data = {
@@ -45,7 +47,6 @@ def dettagli(request, pk):
     }
     return render_to_response('biblioteca/prestiti_copia.html', context_data,
                                 context_instance=RequestContext(request))
-
 
 
 def modifica(request, pk):
@@ -84,6 +85,7 @@ def copia(request, pk):
     return render_to_response('biblioteca/prestiti_copia.html', context_data,
                                 context_instance=RequestContext(request))
 
+
 def restituisci(request, pk):
     prestito = get_object_or_404(Prestito, pk=pk)
 
@@ -91,6 +93,7 @@ def restituisci(request, pk):
         prestito.datarestituzione = datetime.datetime.now()
         prestito.save()
         return HttpResponseRedirect('/copie/%d/+prestiti' % prestito.copia.id)
+
 
 def aggiungi(request, pk):
     copia = get_object_or_404(Copia, pk=pk)

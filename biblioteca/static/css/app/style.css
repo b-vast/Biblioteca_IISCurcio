@@ -139,14 +139,16 @@ input[type="text"] {
     float: right;
 }
 
-/*
-.errorbox {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    border 2px solid red;
+.errorbox, .errorbox * {
+    background: transparent;
 }
-*/
+.errorbox img {
+    float: right;
+    position: absolute;
+    right: 500px;
+    width: 200px;
+    opacity: 0.2;
+}
 
 .horiz * {
     display: inline-block;
