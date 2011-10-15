@@ -9,7 +9,7 @@
     float: left;
     color: #a0a0a0;
     text-align: center;
-    padding-right: 5px;
+    padding: 5px;
     border-right: 1px dotted #dfdfdf;
     margin-right: 5px;
 }
@@ -36,11 +36,10 @@
     padding: 2px 8px;
 }
 .prestito .link:hover {
-    text-decoration: none;
-    background-color: #499bea;
+    text-decoration: underline;
+    background-color: #f0f0f0; /*#499bea;*/
     border-radius: 5px;
 }
-.prestito .link:hover * { color: white; }
 
 
 .prestito .armadio {
