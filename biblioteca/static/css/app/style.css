@@ -193,6 +193,65 @@ input[type="text"] {
 .popover ul { margin: 0; padding-left: 25px; }
 
 
+.box-copia {
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #ddd;
+    padding-left: 5px;
+}
+
+.box-copia .locazione {
+    float: left;
+}
+
+.box-copia .armadio,
+.box-copia .scaffale,
+.box-copia .posizione {
+    padding: 5px 10px;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-align: center;
+    border-right: 1px dotted #dfdfdf;
+}
+
+.box-copia .armadio { font-size: 2.8em; }
+
+.box-copia .edizione {
+    vertical-align: middle;
+    margin-left: 3em;
+    padding: 10px 20px;
+}
+
+.box-copia .titolo {
+    font-size: 2em;
+}
+
+.box-copia .casaeditrice {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: green;
+}
+
+.box-copia .anno {
+    font-size: 1.5em;
+}
+
+.box-copia .isbn {
+    color: #a0a0a0;
+    font-size: 1.1em;
+}
+
+.box-copia .note {
+    padding: 10px;
+    border-left: 1px dashed #dfdfdf;
+    font-size: 1em;
+}
+
+.box-copia .note-toggle {
+    font-size: 1em;
+}
+
 /* forms & form layouts */
 .form-layout {
     border: none;
