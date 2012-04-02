@@ -18,7 +18,7 @@ class Edizione(models.Model):
 
 class Autore(models.Model):
     nome        = models.CharField(max_length=135, db_column='Nome')
-    cognome     = models.CharField(max_length=300, db_column='Cognome')
+    cognome     = models.CharField(max_length=300, db_column='Cognome', blank=True)
     edizione    = models.ForeignKey(Edizione, db_column='FK_IdEdizione')
     
     def __unicode__(self):
@@ -30,8 +30,8 @@ class Autore(models.Model):
 
 
 class Copia(models.Model):
-    armadio     = models.CharField(max_length=15, db_column='Armadio')
-    scaffale    = models.CharField(max_length=15, db_column='Scaffale')
+    armadio     = models.CharField(max_length=60, db_column='Armadio')
+    scaffale    = models.CharField(max_length=60, db_column='Scaffale')
     posizione   = models.IntegerField(db_column='Posizione')
     note        = models.TextField(db_column='Note', blank=True)
     dataora     = models.DateTimeField(null=True, db_column='DataOra', auto_now_add=True)
