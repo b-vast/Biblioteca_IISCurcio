@@ -63,7 +63,7 @@
                         </div>
                         {% else %}
                         <div class='bloccato'>
-                            Questo libro al momento &egrave; in prestito a<br>
+                            Questo libro &egrave; al momento in prestito a<br>
                             <a  href='/copie/{{ copia.id }}/+prestiti'
                                 style='white-space: nowrap'>
                                 {{ prestitocorrente.nome }} {{ prestitocorrente.cognome }}
@@ -95,13 +95,15 @@
     <div id='area-prestiti' class='section'>
         <h2>
             Prestiti conclusi ({{prestiti|length}})
+	    {% comment %}
             {% if prestiti|length > 0 %}
             <a  href='javascript:void(0)' class='link'
                 onclick='$("#container").toggle("slide", {direction: "up"})'
                 >Mostra tutti</a>
             {% endif %}
+	    {% endcomment %}
         </h2>
-        <div id='container' style='display: none'>
+
             {% if prestiti|length > 0 %}
             <table id='lista-prestiti'>
                 <thead>
@@ -129,7 +131,7 @@
                 </tbody>
             </table>
             {% endif %}
-        </div>
+        
     </div>
 
 {% endblock %}

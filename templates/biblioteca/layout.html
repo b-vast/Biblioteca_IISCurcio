@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Biblioteca scolastica I.I.S. "G.Curcio"</title>
+        
         <!-- jquery.tools deve andare prima di jquery.ui
              Non chiedetemi perchè. -->
         <script type='text/javascript' src='/static/js/jquery.js'></script>
@@ -13,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="/static/css/app/layout.css">
 
         {% block head %}{% endblock %}
+
     </head>
         
     <body>
@@ -40,28 +42,29 @@
         {% endif %}
             
         <div id='topbar'>
-
-                <a class='home' href='/'> 
-                    <h1>Biblioteca Scolastica</h1>
-                </a>
-                <h2>Istituto Istruzione Superiore "G.Curcio", Ispica</h2>
+            <div id='brand'>
+                <a class='home' href='/'>Biblioteca Scolastica</a>
+                <small>Istituto Istruzione Superiore "G.Curcio", Ispica</small>
+            </div>
                 
-                <div class='links horiz'>
-                    <form id='topbar-ricerca' action='/ricerca' method='get'>
-                        <div class='fake-input'>
-                            <img class='icon' src='/static/img/find.png'
-                                onclick='$("form#topbar-ricerca").submit()'
-                                style='opacity: 0.7'>
-                            <input type='text' name='q'
-                                    placeholder='Ricerca'>
-                        </div>
-                    </form>
-                    <a href='/armadi'>Armadi</a>
-                    <a href='/prestiti'>Prestiti</a>
-                    <a href='/edizioni/aggiungi'>
-                        <img src='/static/img/add.png'>
-                    </a>
-                </div>
+	    <div class='links horiz'>
+		<div class='form-container'>
+		    <form id='topbar-ricerca' action='/ricerca' method='get'>
+			<div class='fake-input'>
+			    <img class='icon' src='/static/img/find.png'
+				onclick='$("form#topbar-ricerca").submit()'
+				style='opacity: 0.7'>
+			    <input type='text' name='q'
+				    placeholder='Ricerca'>
+			</div>
+		    </form>
+		</div>
+		<a href='/armadi'>Armadi</a>
+		<a href='/prestiti'>Prestiti</a>
+		<a href='/edizioni/aggiungi' class='aggiungi'>
+		    <img src='/static/img/add.png'>
+		</a>
+	    </div>
 
         </div>
 

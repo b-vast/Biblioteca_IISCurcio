@@ -1,41 +1,39 @@
 #topbar {
+    position: absolute;
     width: 100%;
+    height: 35px;
+    top: 0;
     padding: 0;
     margin-bottom: 10px;
     overflow: hidden;
+    z-index: 1;
 
     background-color: #222; 
     border-bottom: 2px solid #aaa;
     color: white;
     font-family: 'Segoe UI', sans-serif;
-
-    /*
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    */
 }
 
-#topbar a.home {
+#brand { 
+    height: 100%; 
+    float: left;
+}
+#brand a.home {
     display: inline-block;
     margin-left: 20px;
-    height: 34px;
-    padding-top: 5px;
-}
-#topbar a.home:hover {
-    background-color: rgba(255,255,255,0.3);
-    text-decoration: none;
-}
-#topbar a.home h1 {
-    padding-right: 10px;
-    padding-left: 10px;
+    height: 100%;
+    padding: 0 10px;
     color: #eee;
     font-size: 20pt;
     font-weight: bold;
-    display: inline;
     letter-spacing: -2px;
 }
-#topbar h2 {
+#brand a.home:hover {
+    background-color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    color: white;
+}
+#brand small {
     margin-left: 5px;
     font-size: 8pt;
     font-weight: normal;
@@ -43,12 +41,42 @@
     color: #aaa;
 }
 
+#topbar .links {
+    float: right;
+    position: absolute;
+    right: 40px;
+    top: -2px;
+    height: 38px;
+    font-size: 15px;
+}
+#topbar .links .form-container {
+    position: relative;
+    top: 1px;
+}
+#topbar .links a {
+    color: #eee;
+    height: 18px;
+    padding: 10px;
+    margin: 0;
+    vertical-align: middle;
+}
+#topbar .links a.aggiungi {
+    padding: 8px 10px 12px;
+}
+#topbar .links a:hover {
+    background-color: #666; /* rgba(255,255,255,0.3); */
+    text-decoration: none;
+}
+#topbar .links a img {
+    width: 24px;
+    height: 24px;
+}
+
 #topbar .fake-input {
     height: 24px;
     width: 178px;
     background-color: #fafafa;
-    border-radius: 3px;
-    margin: 0px 10px;
+    border-radius: 4px;
 }
 #topbar .fake-input input[type='text'] {
     height: 25px;
@@ -68,28 +96,6 @@
     width: 150px;
 }
 
-
-#topbar .links {
-    position: absolute;
-    right: 40px;
-    top: -2px;
-    font-size: 15px;
-}
-#topbar .links a {
-    display: inline-block;
-    color: #eee;
-    padding: 10px 5px;
-    margin: 0;
-    vertical-align: middle;
-}
-#topbar .links a:hover {
-    background-color: rgba(255,255,255,0.3);
-    text-decoration: none;
-}
-#topbar .links a img {
-    width: 24px;
-    height: 24px;
-}
 
 #debug-ticker {
     position: fixed;
@@ -111,10 +117,10 @@
 }
 
 #content {
-    position: relative;
     font-size: 10pt;
     width: 1000px;
     margin: auto;
+    margin-top: 50px;
 }
 
 #footer {

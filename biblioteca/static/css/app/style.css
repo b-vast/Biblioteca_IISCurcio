@@ -1,10 +1,14 @@
+
 html, body {
     margin: 0; 
     background-color: white;
     cursor: default;
 }
+
 * { font-family: 'Droid Sans', 'Segoe UI', sans-serif; }
 
+a { outline: none; border: 0; }
+a img { outline: none; border: 0; }
 textarea, input { outline: none; font-family: sans-serif; }
 form { margin: 0; }
 h2 { margin: 0.83em auto; }
@@ -82,9 +86,9 @@ input[type="text"] {
     border: 1px solid #a0a0a0;
     border-radius: 3px;
     height: 30px;
-    width: 500px;
     padding: 0;
     background-color: white;
+    position: relative;
 }
 .fake-input input[type='text'] {
     background: inherit;
@@ -93,6 +97,9 @@ input[type="text"] {
     height: 30px;
     width: 470px;
 }
+.fake-input input[type='text']:focus {
+    box-shadow: 0 0 0 0; 
+}
 .fake-input a {
     margin: 0;
 }
@@ -100,6 +107,7 @@ input[type="text"] {
     cursor: pointer;
     float: right;
     position: absolute;
+    right: 0;
     padding: 5px;
     height: 20px;
     vertical-align: middle;
@@ -108,8 +116,8 @@ input[type="text"] {
 /** Layout */
 
 .section {
-    margin-left: 6em;
-    margin-right: 6em;
+    margin-left: 4em;
+    margin-right: 4em;
     overflow: auto;
 }
 
@@ -152,7 +160,6 @@ input[type="text"] {
 
 .horiz * {
     display: inline-block;
-    vertical-align: middle; 
 }
 
 .popover {

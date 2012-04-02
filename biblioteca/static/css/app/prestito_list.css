@@ -44,6 +44,7 @@
     margin-top: 7px;
 }
 #searchform .fake-input {
+    width: 500px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -92,9 +93,6 @@
     font-size: 12pt;
     color: green;
 }
-.prestito .beneficiario:hover {
-    
-}
 
 .prestito .data { font-size: 10.5pt; }
 .prestito .data .consegna       { color: #888; }
@@ -103,8 +101,6 @@
 
 .prestito .info {
     margin-left: 8em;
-}
-.prestito .copia {
 }
 
 .prestito .locazione {

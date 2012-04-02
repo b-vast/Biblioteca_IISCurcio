@@ -3,6 +3,9 @@
     padding: 20px 20px;
     border-bottom: 1px solid #dfdfdf;
 }
+#ricerca .fake-input {
+    width: 500px;
+}
 
 .prestito { overflow: auto; }
 .prestito .data {

@@ -1,11 +1,11 @@
 
 table.form-layout {
-    width: 100%;
     border-collapse: collapse;
 }
 
 table td {
-    padding: 2px 10px;
+    padding: 5px 15px;
+    width: 130px;
 }
 table td.label {
     font-size: 7.5pt;
@@ -15,7 +15,7 @@ table td.label {
     padding-bottom: 20px;
 }
 table td.grouplabel {
-    width: 8em;
+    white-space: nowrap;
     padding-top: 6px;
     padding-right: 20px;
     text-align: right;
