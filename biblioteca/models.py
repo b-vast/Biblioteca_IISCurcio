@@ -3,12 +3,10 @@ from django.db import models
 from datetime import date
 
 class Edizione(models.Model):
-    titolo          = models.CharField(max_length=900, db_column='Titolo')
-    casaeditrice    = models.CharField(max_length=135, db_column='CasaEditrice',
-                                        blank=True, verbose_name='Casa editrice')
-    anno            = models.CharField(max_length=4, db_column='Anno', blank=True, null=True)
-    isbn            = models.CharField(max_length=60, db_column='ISBN',
-                                        blank=True, verbose_name='ISBN')
+    titolo          = models.CharField(max_length=900,  db_column='Titolo',         db_index=True)
+    casaeditrice    = models.CharField(max_length=135,  db_column='CasaEditrice',   blank=True, verbose_name='Casa editrice', db_index=True)
+    anno            = models.CharField(max_length=4,    db_column='Anno',           blank=True, null=True)
+    isbn            = models.CharField(max_length=60,   db_column='ISBN',           blank=True, verbose_name='ISBN', db_index=True)
 
     def __unicode__(self):
         return "<Edizione#%d: %s>" % (self.id, self.titolo)
@@ -68,7 +66,7 @@ class Prestito(models.Model):
     copia = models.ForeignKey(Copia, db_column='FK_idCopia')
 
     def __unicode__(self):
-        return "<Prestito#%d: %s %s, %s>" % (self.id, self.nome, self.cognome, self.dataconsegna)
+        return "<Prestito#%d: %s %s, %s: %s>" % (self.id, self.nome, self.cognome, self.dataconsegna, self.copia.edizone.titolo)
     class Meta:
         db_table = u'Prestiti'
         verbose_name_plural = 'Prestiti'
