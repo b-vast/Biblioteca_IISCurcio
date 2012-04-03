@@ -8,8 +8,12 @@ class Edizione(models.Model):
     anno            = models.CharField(max_length=4,    db_column='Anno',           blank=True, null=True)
     isbn            = models.CharField(max_length=60,   db_column='ISBN',           blank=True, verbose_name='ISBN', db_index=True)
 
+    def clean(self):
+	self.titolo = self.titolo.strip()
+	self.casaeditrice = self.casaeditrice.strip()
+
     def __unicode__(self):
-        return "<Edizione#%d: %s>" % (self.id, self.titolo)
+        return "#%d: %s" % (self.id, self.titolo)
     class Meta:
         db_table = u'Edizioni'
         verbose_name_plural = 'Edizioni'
@@ -19,8 +23,12 @@ class Autore(models.Model):
     cognome     = models.CharField(max_length=300, db_column='Cognome', blank=True)
     edizione    = models.ForeignKey(Edizione, db_column='FK_IdEdizione')
     
+    def clean(self):
+	self.nome = self.nome.strip()
+	self.cognome = self.cognome.strip()
+
     def __unicode__(self):
-        return "<Autore#%d: %s %s>" % (self.id, self.nome, self.cognome)
+        return "#%d: %s %s" % (self.id, self.nome, self.cognome)
     class Meta:
         db_table = u'Autori'
         unique_together = ('nome', 'cognome', 'edizione')
@@ -36,11 +44,15 @@ class Copia(models.Model):
     edizione    = models.ForeignKey(Edizione, db_column='FK_idEdizione')
 
     def __unicode__(self):
-        return "<Copia#%d: %s %s %d>" % (self.id, self.armadio, self.scaffale, self.posizione)
+        return "#%d: %s %s %d" % (self.id, self.armadio, self.scaffale, self.posizione)
     class Meta:
         db_table = u'Copie'
         unique_together = ('armadio', 'scaffale', 'posizione')
         verbose_name_plural = 'Copie'
+
+    def clean(self):
+	self.armadio = self.armadio.strip()
+	self.scaffale = self.scaffale.strip()
 
     def prestito_corrente(self):
         try:
@@ -66,7 +78,7 @@ class Prestito(models.Model):
     copia = models.ForeignKey(Copia, db_column='FK_idCopia')
 
     def __unicode__(self):
-        return "<Prestito#%d: %s %s, %s: %s>" % (self.id, self.nome, self.cognome, self.dataconsegna, self.copia.edizone.titolo)
+        return "#%d: %s %s, %s: %s" % (self.id, self.nome, self.cognome, self.dataconsegna, self.copia.edizone.titolo)
     class Meta:
         db_table = u'Prestiti'
         verbose_name_plural = 'Prestiti'
