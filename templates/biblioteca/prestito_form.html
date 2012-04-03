@@ -13,138 +13,104 @@
     </div>
 
     <h2>Informazioni prestito</h2>
-    <div class='section'>
         <form name='main_form' method='post' action='#'>
-        {% csrf_token %}
-        <table class='form-layout'>
-            <tbody>
-                <tr>
-                    <td rowspan='3' class='grouplabel'>Beneficiario &raquo;</td>
-                    <td class='field nome'     >{{ form.nome }}</td>
-                    <td class='field cognome'  >{{ form.cognome }}</td>
-                    <td class='field categoria'>{{ form.categoria }}</td>
-                    <td class='field classe'   >{{ form.classe }}</td>
-                </tr>
-                <tr>
-                    <td class='label'>Nome</td>
-                    <td class='label'>Cognome</td>
-                    <td class='label'>Categoria</td>
-                    <td class='label'>Classe</td>
-                </tr>
-                <tr>
-                    <td>
-                        {% if form.nome.errors %}
-                        <div class='error popover'>
-                            <div class='arrow top'></div>
-                            <div class='content'>{{ form.nome.errors }}</div>
-                        </div>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if form.cognome.errors %}
-                        <div class='error popover'>
-                            <div class='arrow top'></div>
-                            <div class='content'>{{ form.cognome.errors }}</div>
-                        </div>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if form.categoria.errors %}
-                        <div class='error popover'>
-                            <div class='arrow top'></div>
-                            <div class='content'>{{ form.categoria.errors }}</div>
-                        </div>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if form.classe.errors %}
-                        <div class='error popover'>
-                            <div class='arrow top'></div>
-                            <div class='content'>{{ form.classe.errors }}</div>
-                        </div>
-                        {% endif %}
-                    </td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td rowspan='3' class='grouplabel'>Responsabile &raquo;</td>
-                    <td class='field nomeresp'   >{{ form.nomeresp }}</td>
-                    <td class='field cognomeresp'>{{ form.cognomeresp }}</td>
-                </tr>
-                <tr>
-                    <td class='label'>Nome</td>
-                    <td class='label'>Cognome</td>
-                </tr>
-                <tr>
-                    <td>
-                        {% if form.nomeresp.errors %}
-                        <div class='error popover'>
-                            <div class='arrow top'></div>
-                            <div class='content'>{{ form.nomeresp.errors }}</div>
-                        </div>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if form.cognomresp.errors %}
-                        <div class='error popover'>
-                            <div class='arrow top'></div>
-                            <div class='content'>{{ form.classe.errors }}</div>
-                        </div>
-                        {% endif %}
-                    </td>
-                </tr>
-            </tbody>
-            {% if form.instance.id %}
-            <tbody>
-                <tr>
-                    <td rowspan='3' class='grouplabel'>Date &raquo;</td>
-                    <td colspan='2' class='field dataconsegna'>{{ form.instance.dataconsegna }}</td>
-                    <td colspan='2' class='field datarestituzione'>{{ form.instance.datarestituzione|default:" - " }}</td>
-                </tr>
-                <tr>
-                    <td colspan='2' class='label'>Consegna</td>
-                    <td colspan='2' class='label'>Restituzione</td>
-                </tr>
-            </tbody>
-            {% endif %}
-            <tbody>
-                <tr>
-                    <td rowspan='2' class='grouplabel'>Note &raquo;</td>
-                    <td colspan='4'>
-                        {{ form.note }}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan='4'>
-                        {% if form.note.errors %}
-                        <div class='error popover'>
-                            <div class='arrow top'></div>
-                            <div class='content'>{{ form.note.errors }}</div>
-                        </div>
-                        {% endif %}
-                    </td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td class='grouplabel'></td>
-                    <td class='commands' colspan='4'>
-                        <button
-                            type='submit'
-                            class='btn primary'
-                            >Salva</button>
-                        <button
-                            type='button'
-                            class='btn'
-                            onclick='window.history.back()'
-                            >Annulla</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+	    {% csrf_token %}
+
+	    <fieldset>
+		<div class='grouplabel'>Beneficiario &raquo;</div>
+
+		<span class='label'>Nome</span>
+		{% if form.nome.errors %}
+		<div class='error popover'>
+		    <div class='arrow top'></div>
+		    <div class='content'>{{ form.nome.errors }}</div>
+		</div>
+		{% endif %}
+		{{ form.nome }}
+
+		<span class='label'>Cognome</span>
+		{% if form.cognome.errors %}
+		<div class='error popover'>
+		    <div class='arrow top'></div>
+		    <div class='content'>{{ form.cognome.errors }}</div>
+		</div>
+		{% endif %}
+		{{ form.cognome }}
+
+		<span class='label'>Categoria</span>
+		{% if form.categoria.errors %}
+		<div class='error popover'>
+		    <div class='arrow top'></div>
+		    <div class='content'>{{ form.categoria.errors }}</div>
+		</div>
+		{% endif %}
+		{{ form.categoria }}
+
+		<span class='label'>Classe</span>
+		{% if form.classe.errors %}
+		<div class='error popover'>
+		    <div class='arrow top'></div>
+		    <div class='content'>{{ form.classe.errors }}</div>
+		</div>
+		{% endif %}
+		{{ form.classe }}
+	    </fieldset>
+
+	    <fieldset>
+		<div class='grouplabel'>Responsabile &raquo;</div>
+
+		<span class='label'>Nome</span>
+		{% if form.nomeresp.errors %}
+		<div class='error popover'>
+		    <div class='arrow top'></div>
+		    <div class='content'>{{ form.nomeresp.errors }}</div>
+		</div>
+		{% endif %}
+		{{ form.nomeresp }}
+
+		<span class='label'>Cognome</span>
+		{% if form.cognomeresp.errors %}
+		<div class='error popover'>
+		    <div class='arrow top'></div>
+		    <div class='content'>{{ form.cognomeresp.errors }}</div>
+		</div>
+		{% endif %}
+		{{ form.cognomeresp }}
+	    </fieldset>
+
+	    <fieldset>
+		<div class='grouplabel'>Date &raquo;</div>
+
+		<span class='label'>Consegna</span>
+		<span class='data consegna'>{{ form.instance.dataconsegna }}</span>
+
+		<span class='label'>Restituzione</span>
+		<span class='data restituzione'>{{ form.instance.datarestituzione|default:" - " }}</span>
+	    </fieldset>
+
+	    <fieldset class='note'>
+		<div class='grouplabel'>Note &raquo;</div>
+		{% if form.note.errors %}
+		<div class='error popover'>
+		    <div class='arrow top'></div>
+		    <div class='content'>{{ form.note.errors }}</div>
+		</div>
+		{% endif %}
+		{{ form.note }}
+	    </fieldset>
+
+	    <fieldset class='buttons'>
+		<button
+		    type='submit'
+		    class='btn primary'
+		    >Salva</button>
+		<button
+		    type='button'
+		    class='btn'
+		    onclick='window.history.back()'
+		    >Annulla</button>
+	    </fieldset>
         </form>
-    </div>
 
 {% endblock %}
 

@@ -1,0 +1,144 @@
+{% extends "biblioteca/layout.html" %}
+
+{% block head %}
+    <link rel='stylesheet' type='text/css' href='/static/css/app/ricerca.css'>
+    <link rel='stylesheet' type='text/css' href='/static/css/app/ricerca_avanzata.css'>
+    <script type='text/javascript'>
+
+function paramsToggle() {
+    var container = $("#search-params-container");
+    if( container.is(':hidden') ) {
+	$("h2 a.show").html("Nascondi &laquo;");
+	container.slideDown('slow');
+    } else {
+	$("h2 a.show").html("Mostra &raquo;");
+	container.slideUp('slow');
+    }
+}
+
+$(function() {
+    $("#search_params input").keydown(function(event) {
+	if( event.keyCode == 13 ) {
+	    $("#search_params").submit();
+	}
+    });
+});
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h1>Ricerca avanzata</h1>
+
+
+    <h2>
+	Criteri ricerca
+	{% if done %}
+	    <a href='#' class='show' onclick='paramsToggle()'>Mostra &raquo;</a> 
+	{% endif %}
+    </h2>
+
+    <div id='search-params-container' {% if done %}style='display: none'{% endif %}>
+        <form id='search_params' name='search_params' method='get' action='/ricerca'>
+		<div class='form-field'>
+		    <label for='input-titolo'>Titolo:</label>
+		    <input type='text' id='input-titolo' name='titolo' tabindex='1' 
+			   value='{{ params.titolo }}'>
+		</div>
+
+		<div class='form-field'>
+		    <label for='input-casaeditrice'>Casa editrice:</label>
+		    <input type='text' id='input-casaeditrice' name='casaeditrice' tabindex='2'
+			   value='{{ params.casaeditrice }}'>
+		</div>
+
+		<div class='form-field inline'>
+		    <label for='input-anno'>Anno:</label>
+		    <input type='text' id='input-anno' name='anno' tabindex='3'
+			   value='{{ params.anno }}'>
+		</div>
+
+		<div class='form-field inline'>
+		    <label for='input-isbn'>ISBN:</label>
+		    <input type='text' id='input-isbn' name='isbn' tabindex='4'
+			   value='{{ params.isbn }}'>
+		</div>
+
+		<div class='form-field'>
+		    <label for='input-autori'>Autori:</label>
+		    <input type='text' id='input-autori' name='autori' tabindex='5'
+			   value='{{ params.autori }}'>
+		</div>
+
+		<div class='form-field location'>
+		    <label for='input-armadio'>Locazione:</label>
+		    <span class='input-label'>Armadio</span>
+		    <input type='text' id='input-armadio' name='armadio' tabindex='6'
+			   value='{{ params.armadio }}'>
+		    <span class='input-label'>Scaffale</span>
+		    <input type='text' id='input-scaffale' name='scaffale' tabindex='7'
+			   value='{{ params.scaffale }}'>
+		    <span class='input-label'>Posizione</span>
+		    <input type='text' id='input-posizione' name='posizione' tabindex='8'
+			   value='{{ params.posizione }}'>
+		</div>
+
+		<a class='btn primary' id='search-btn'
+		    onclick='document.search_params.submit()'>Cerca</a>
+        </form>
+    </div>
+
+    {% if done %}
+    <h2>
+	<span class='hits'>{{ results|length }}</span>
+	risultat{{ results|pluralize:"o,i" }}
+	{% if query %}
+	    per <span class='query'>{{ query }}</span>
+	{% endif %}
+    </h2>
+    <div id='results'>
+
+
+        {% for edizione in results %}
+        <div class='hit'>
+            <div>
+            {% for autore in edizione.autore_set.all %}
+                {% if not forloop.counter == 1 %}/{% endif%}
+                <a class='autore'
+                    href='/ricerca?autori={{ autore.nome|urlencode }}+{{ autore.cognome|urlencode }}'
+                    >{{ autore.nome }} {{ autore.cognome }}</a>
+            {% endfor %}
+            </div>
+
+            <div>
+                <a  class='titolo' href='/edizioni/{{ edizione.id }}'
+                    >{{ edizione.titolo }}</a>
+            </div>
+
+            <div>
+            <a class='casaeditrice'
+                href='/ricerca?casaeditrice={{ edizione.casaeditrice|urlencode }}'
+                >{{ edizione.casaeditrice }}</a>
+
+            {% if edizione.anno %}
+            -
+            <span class='anno'>
+                 {{ edizione.anno }} 
+            </span>
+            {% endif %}
+
+            {% if edizione.isbn %}
+            <span class='isbn'>
+                 ISBN:{{ edizione.isbn }} 
+            </span>
+            {% endif %}
+        </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+{% endblock %}
+

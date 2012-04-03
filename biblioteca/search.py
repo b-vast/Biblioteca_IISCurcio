@@ -33,8 +33,10 @@ def prestiti_search(params):
     solo_non_restituiti = not params.get('restituiti', False)
     return prestiti_simple_search(params['query'], solo_non_restituiti)
 
-def edizioni_simple_search(query):
-    words = query.split()
+def edizioni_simple_search(params):
+    if not params.has_key('q'): return None
+
+    words = params['q'].split()
 
     results = {}
 
@@ -55,30 +57,37 @@ def edizioni_simple_search(query):
 
 def edizioni_advanced_search(params):
 
-    results = {}
+    keys = ['titolo',   'casaeditrice',
+	    'anno',	'isbn',
+	    'autori',   'armadio', 
+	    'scaffale', 'posizione']
 
-    for field in ['titolo', 'casaeditrice', 'anno', 'isbn',
-                    'autore__nome', 'autore__cognome']:
-        if not params.has_key(field): continue
+    not_specified = 0
+    query = Edizione.objects.all()
 
-        for word in params[field].split():
-            kwargs = { field+'__icontains' : params[field] }
-            edizioni = Edizione.objects.filter(**kwargs)
-            for e in edizioni:
-                if not results.has_key(e.id):
-                    results[e.id] = 1
-                else:
-                    results[e.id] += 1
+    for key in keys:
+	if not params.has_key(key): 
+	    not_specified += 1
+	    continue
 
-    results = results.items()
-    results.sort(cmp=lambda a, b: cmp(b[1], a[1]))
-    return [ Edizione.objects.get(pk=id) for id, score in results ]
+	if key == 'autori':
+	    for word in params[key].split():
+		# WHERE ( Autori.nome LIKE '%<word>%' 
+		#	    OR Autori.cognome LIKE '%<word>%' ) AND ...
+		query = query & \
+			( Edizione.objects.filter(autore__nome__icontains=word) \
+			  | Edizione.objects.filter(autore__cognome__icontains=word))
 
+	elif key in ['armadio', 'scaffale', 'posizione']:
+	    kwargs = { 'copia__'+key: params[key].strip() }
+	    query = query & Edizione.objects.filter(**kwargs)
 
-def search(params):
-    if params.has_key('q'):
-        return edizioni_simple_search(params['q'])
-    else:
-        return edizioni_advanced_search(params)
+	else:
+	    for word in params[key].split():
+		kwargs = { key+'__icontains': word }
+		query = query & Edizione.objects.filter(**kwargs)
+
+    if not_specified == len(keys): return None
+    return query.distinct()
 
 

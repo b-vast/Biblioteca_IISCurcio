@@ -16,6 +16,9 @@
 #tabella-form-info td.error-column {
     width: 35%;
 }
+#tabella-form-info input[type='text'] {
+    width: 100%;
+}
 
 #tabella-autori {
     margin: 0;

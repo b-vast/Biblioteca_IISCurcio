@@ -60,9 +60,7 @@
     margin: 0;
     vertical-align: middle;
 }
-#topbar .links a.aggiungi {
-    padding: 8px 10px 12px;
-}
+#topbar .links a.aggiungi { padding: 8px 10px 12px; }
 #topbar .links a:hover {
     background-color: #666; /* rgba(255,255,255,0.3); */
     text-decoration: none;
@@ -117,10 +115,10 @@
 }
 
 #content {
-    font-size: 10pt;
     width: 1000px;
     margin: auto;
     margin-top: 50px;
+    margin-bottom: 1.5em;
 }
 
 #footer {

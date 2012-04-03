@@ -49,18 +49,19 @@
                 
 	    <div class='links horiz'>
 		<div class='form-container'>
-		    <form id='topbar-ricerca' action='/ricerca' method='get'>
+		    <form id='topbar-ricerca' action='/ricerca_r' method='get'>
 			<div class='fake-input'>
 			    <img class='icon' src='/static/img/find.png'
 				onclick='$("form#topbar-ricerca").submit()'
 				style='opacity: 0.7'>
 			    <input type='text' name='q'
-				    placeholder='Ricerca'>
+				   placeholder='Ricerca rapida'>
 			</div>
 		    </form>
 		</div>
-		<a href='/armadi'>Armadi</a>
+		<a href='/ricerca' class='ricerca_a'>Ricerca avanzata</a>
 		<a href='/prestiti'>Prestiti</a>
+		<a href='/armadi'>Armadi</a>
 		<a href='/edizioni/aggiungi' class='aggiungi'>
 		    <img src='/static/img/add.png'>
 		</a>

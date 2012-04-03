@@ -7,7 +7,8 @@ urlpatterns = patterns('biblioteca.views',
     url(r'^test-404$', TemplateView.as_view(template_name="404.html")),
 
     url(r'^$',          'home'),
-    url(r'^ricerca$',   'ricerca.ricerca'),
+    url(r'^ricerca_r$', 'ricerca.ricerca_rapida'),
+    url(r'^ricerca$',	'ricerca.ricerca_avanzata'),
 
     url(r'^edizioni$',                          ListView.as_view(
                                                     queryset=Edizione.objects.order_by('titolo'))),

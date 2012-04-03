@@ -1,60 +1,79 @@
 
-table.form-layout {
-    border-collapse: collapse;
+fieldset {
+    border: none;
+    overflow: hidden;
+}
+fieldset.note {
+    height: 120px;
+}
+fieldset.buttons {
+    margin-left: 181px;
 }
 
-table td {
-    padding: 5px 15px;
-    width: 130px;
+fieldset input, fieldset div, fieldset span {
+    display: inline-block;
+    margin: 0;
 }
-table td.label {
-    font-size: 7.5pt;
-    font-style: italic;
-    padding-top: 0px;
-    padding-left: 25px;
-    padding-bottom: 20px;
-}
-table td.grouplabel {
-    white-space: nowrap;
-    padding-top: 6px;
-    padding-right: 20px;
-    text-align: right;
-    vertical-align: top;
-    border-right: 1px dotted #dfdfdf;
+
+.grouplabel {
+    width: 150px;
+    padding: 25px 10px;
+    margin-right: 10px;
     font-size: 14pt;
     font-weight: bold;
+    border-right: 1px dotted #dfdfdf;
+    text-align: right;
 }
-table.form-layout input[type='text'] {
-    font-size: 10pt;
-    height: 25px;
-    padding-left: 15px;
+fieldset.note .grouplabel { height: 150px; }
+.label {
+    position: absolute;
+    margin-top: 60px;
+    font-size: 8pt;
+    font-style: italic;
 }
 
-td.field.nome input,
-td.field.cognome input {
+input[type='text'] {
+    width: 170px;
+    margin-right: 5px;
+}
+input[name='nome'], input[name='cognome'] {
     font-weight: bold;
     font-size: 12pt;
 }
-td.field.categoria input,
-td.field.classe input {
+input[name='categoria'], input[name='classe'] {
     color: green;
 }
-td.field.nomeresp input,
-td.field.cognomeresp input {
+input[name='nomeresp'], input[name='cognomeresp'] {
     color: #115CCC;
 }
-td.field.dataconsegna {
+textarea {
+    margin-bottom: -70px;
+}
+
+.data {
+    padding: 20px 10px;
+    font-weight: bold;
+    width: 170px;
+}
+.data.restituzione { color: red; }
+.data.consegna { color: #333; }
+
+/*
+   dataconsegna { 
     padding-left: 25px;
     color: #707070;
 }
+ */
+
 
 .error.popover {
-    position: relative;
-    bottom: 10px;
+    position: absolute;
+    margin-top: 80px;
+    margin-left: -20px;
 }
 .error.popover .arrow {
     position: relative;
-    left: 20px;
+    left: 30px;
 }
 
 td.commands {

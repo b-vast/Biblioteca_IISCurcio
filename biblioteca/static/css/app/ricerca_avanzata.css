@@ -1,0 +1,58 @@
+
+h2 a.show {
+    font-size: 10pt;
+    font-weight: normal;
+}
+
+#search_params {
+    display: block;
+    position: relative;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+
+.form-field {
+    margin: 15px;
+}
+.form-field.inline {
+    display: inline-block;
+    margin: 0 15px;
+}
+.form-field label {
+    display: inline-block;
+    width: 100px;
+    padding: 5px;
+    font-size: 11pt;
+    text-align: right;
+    white-space: nowrap;
+}
+.form-field label[for='input-isbn'] { width: 39px; }
+.form-field input {
+    display: inline-block;
+    position: relative;
+    font-size: 11pt;
+    bottom: 3px;
+    width: 500px;
+}
+.form-field input#input-anno { width: 200px; }
+.form-field input#input-isbn { width: 200px; }
+
+.form-field.location input {
+    width: 60px;
+    margin-right: 20px;
+}
+.form-field.location .input-label {
+    position: absolute;
+    margin-top: 30px;
+    font-size: 8pt;
+    font-style: italic;
+}
+
+#search-btn {
+    margin-top: 20px;
+    margin-left: 127px;
+}
+
