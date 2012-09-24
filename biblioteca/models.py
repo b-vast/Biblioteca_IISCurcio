@@ -78,7 +78,7 @@ class Prestito(models.Model):
     copia = models.ForeignKey(Copia, db_column='FK_idCopia')
 
     def __unicode__(self):
-        return "#%d: %s %s, %s: %s" % (self.id, self.nome, self.cognome, self.dataconsegna, self.copia.edizone.titolo)
+        return "#%d: %s %s, %s: %s" % (self.id, self.nome, self.cognome, self.dataconsegna, self.copia.edizione.titolo)
     class Meta:
         db_table = u'Prestiti'
         verbose_name_plural = 'Prestiti'
