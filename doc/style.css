@@ -1,0 +1,139 @@
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    cursor: default;
+}
+
+body {
+    margin: 0 auto;
+    padding-top: 100px;
+    padding-left: 200px;
+    padding-right: 200px;
+    font-family: sans-serif;
+    font-size: 11pt;
+}
+
+
+h1, h2 {
+    font-family: sans-serif;
+}
+
+
+.title {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    margin: 0;
+    padding-top: 20px;
+    background-color: white;
+    border-bottom: 1px solid #dedede;
+}
+
+.title .subtitle, .title h1 {
+    margin-left: 200px;
+    display: block;
+}
+.title h1 {
+    margin-top: 0;
+}
+
+.title .subtitle {
+    font-family: sans-serif;
+    font-size: 8pt;
+    font-weight: bold;
+    color: #777777;
+    text-transform: uppercase;
+}
+.title .subtitle .project {
+    color: #333333;
+}
+
+
+.nowrap {
+    white-space: nowrap;
+}
+
+code {
+    font-size: 10pt;
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 2px;
+}
+
+h3 {
+    display: block;
+    position: absolute;
+
+    width: 130px;
+    margin-top: 0;
+    margin-left: -150px;
+    text-align: right;
+    padding: 2px;
+    
+    font-family: sans-serif;
+    font-size: 8pt;
+    font-weight: bold;
+    color: #777777;
+    text-transform: uppercase;
+}
+
+a { color: #4680C2; }
+
+#backup-advice:before {
+    content: '[';
+
+    display: block;
+    position: absolute;
+    margin-top: -0.5em;
+    margin-left: -0.5em;
+}
+#backup-advice:after {
+    content: ']';
+
+    display: block;
+    position: absolute;
+    margin-top: -0.7em;
+    right: 150px;
+}
+
+#backup-advice:before, #backup-advice:after {
+    font-size: 48pt;
+    font-weight: bold;
+    z-index: -1;
+
+    color: #ffdede;
+}
+
+#backup-advice {
+    font-weight: bold;
+}
+
+footer {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #222222;
+    color: #aaaaaa;
+    font-size: 8pt;
+}
+
+#sign {
+    text-align: right;
+    padding-right: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#sign .date {
+    color: #555555;
+}
+#sign .name {
+    color: #dedede;
+}

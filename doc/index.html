@@ -1,0 +1,126 @@
+<!doctype html5>
+<html>
+    <head>
+        <title>Biblioteca Scolastica I.I.S. "G.Curcio" :: Documentazione</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+
+    <body>
+        <div id='text'>
+
+		<div class="title">
+		    <div class='subtitle'>I.I.S. “G.Curcio” - <span class='project'>Biblioteca Scolastica</span></div>
+		    <h1>Note tecniche</h1>
+		</div>
+
+		<p>Questo documento fornisce alcuni dettagli tecnici circa i singoli componenti che concorrono a formare il sistema informatico di gestione della biblioteca scolastica dell’Istituto di Istruzione Superiore “G.Curcio”.</p>
+
+		<h3 id="rtfm">RTFM</h3>
+		<p>Il sistema si serve di un buon numero di componenti software esterni, tutti rilasciati sotto una licenza open-source o free-software. Ognuno di questi mette a disposizione, sul web, documentazione di ottima qualità, che si raccomanda di consultare per qualsiasi evenienza. Anche per questo motivo, si specificano in questo documento solo quelle informazioni riguardanti la specifica applicazione e le modalità di installazione presso la scuola.</p>
+
+		<h2 id="schema-generale">Schema generale</h2>
+
+		<p>Il sistema è costituito da una tipica applicazione web, scomponibile in 4 grandi blocchi:</p>
+
+		<img src="schema.png" alt="(schema generale)">
+
+		<h2 id="browser-compatibili">Browser compatibili</h2>
+
+		<p>Tutti i browser più comuni sono stati testati:</p>
+
+		<ul>
+		  <li>Google Chrome</li>
+		  <li>Mozilla Firefox</li>
+		  <li>Opera</li>
+		  <li>Internet Explorer (testata solo la versione 9).</li>
+		</ul>
+
+		<p><em>(Alcuni standard web non sono completamente supportati da Internet Explorer; questo potrebbe determinare alcune imperfezioni minori nella visualizzazione di alcune pagine in quel browser, che comunque non compromettono mai l’utilizzo dell’applicazione.)</em></p>
+
+		<p>Indipendentemente dal browser, è <strong>necessario abilitare Javascript</strong> (in genere lo è già, per impostazione predefinita).</p>
+
+		<h2 id="server-web">Server web</h2>
+
+		<p>Il server web installato sulla macchina server è <strong>Apache 2.2</strong>.
+		L’applicazione è legata al server attraverso l’interfaccia <a href="http://wsgi.readthedocs.org/en/latest/what.html">WSGI</a> realizzata dal modulo Apache <a href="http://code.google.com/p/modwsgi/">mod_wsgi</a> (già configurato).</p>
+
+		<p>È possibile sostituire Apache con qualsiasi altro server web (e.g. <code>lighttpd</code>, <code>nginx</code>, etc…); qualora si decida di far ciò, si consulti la relativa documentazione per i dettagli sulla configurazione.</p>
+
+		<h2 id="applicazione">Applicazione</h2>
+
+		<p>L’applicazione vera e propria svolge tutte le operazioni di acquisizione dell’input e di generazione dell’output. È scritta interamente in <a href="http://www.python.org"><strong>Python 2.7</strong></a>, basandosi sul framework <a href="https://www.djangoproject.com/"><strong>Django 1.3</strong></a>.</p>
+
+		<p>L’aggiornamento alla versione 1.4 di Django è possibile, ed è compatibile con l’applicazione, ma considerati i vantaggi estremamente esigui che se ne possono trarre, non è un’operazione consigliata.</p>
+
+		<h3 id="supporto-python-3">Supporto Python 3</h3>
+		<p>Django (almeno fino alla versione 1.4) non supporta Python 3. Essendo quindi necessario l’utilizzo Python 2.7, anche tutto il codice dell’applicazione è compatibile solo con tale versione dell’interprete. Non è stato preso nessun accorgimento in preparazione a un port verso la versione 3.</p>
+
+		<h3 id="model-view-controller">Model-View-Controller</h3>
+		<p>È importante notare come Django implementi un’architettura <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model-View-Controller</a>: di conseguenza, il codice è separato in tre diversi “ambiti”, interconnessi in modo non vincolante:</p>
+
+		<ul>
+		  <li>I modelli (<em>models</em>) danno una rappresentazione delle proprietà e delle relazioni degli
+		 oggetti memorizzati nel database relazionale, offrendo un’interfaccia indipendente dal database stesso.</li>
+		  <li>I template (corrispondono alle <em>view</em> dello schema MVC) consentono la generazione delle pagine HTML contenenti i dati che l’utente visualizzerà nel browser.</li>
+		  <li>Le view (corrispondenti ai <em>controller</em>) effettuano le operazioni richieste dall’utente, utilizzando i <em>model</em> per comunicare con la base dati, e fornendo le informazioni ottenute ai <em>template</em> (e quindi, attraverso il server web, all’utente).</li>
+		</ul>
+
+		<h2 id="database">Database</h2>
+
+		<p>Ogni comunicazione da e verso database avviene esclusivamente attraverso i <em>model</em> e gli strumenti forniti da Django: nessun comando SQL viene direttamente spedito al database. Questo perchè ogni <em>model</em> presenta proprietà, restrizioni e relazioni che devono essere mantenute consistenti dal framework.</p>
+
+		<p>L’effettiva memorizzazione dei dati viene effettuta da un software separato, tipicamente un RDBMS, col quale Django comunica attraverso componenti dall'interfaccia comune detti <em>back-end</em>.
+		Django supporta così tutti i principali RDBMS (e.g. MySQL, PostgreSQL, SQLite …). Il passaggio da un <em>back-end</em> ad un altro si può effettuare tramite la semplice modifica del file di configurazione principale (<code>settings.py</code>).</p>
+
+		<p>Al momento dell’installazione si è scelto il back-end <a href="http://www.sqlite.org/">SQLite 3</a>: si tratta di un database molto piccolo, leggero, veloce e affidabile che opera su di un semplice file. Quest’ultima caratteristica riduce la generale complessità del sistema e semplifica notevolmente operazioni di backup.</p>
+
+		<h3 id="backup">Backup</h3>
+		<p id='backup-advice'>È fondamentale effettuare periodicamente backup dell'intero database, per limitare i danni in caso di perdita dei dati.</p>
+
+		<p>Dato che il database è interamente contenuto nel file <code>Biblioteca.sqlite3</code>, è sufficiente copiare tale file presso una locazione sicura o su un supporto di memorizzazione esterno, o in alternativa, utilizzare qualsiasi software per il backup programmato dei file.</p>
+
+		<h3 id="modifiche-allo-schema">Modifiche allo ‘schema’: solo attraverso i <em>model</em></h3>
+		<p>Nell'eventualità in cui, durante lo sviluppo, si volesse modificare lo <em>schema</em> del database, si raccomanda di agire sempre nel seguente modo:
+		<ol>
+		<li>effettuare prima una copia di backup del database (<code>Biblioteca.sqlite3</code>)</li>
+		<li>modificare le definizioni dei <em><a href="https://docs.djangoproject.com/en/1.3/topics/db/models/">model</a></em> in <code>biblioteca/models.py</code></li>
+		<li>utilizzare gli strumenti di amministrazione forniti da Django per rendere effettive le modifiche.
+		(e.g. <a href="https://docs.djangoproject.com/en/1.3/ref/django-admin/#syncdb"><code>python manage.py syncdb</code></a>).</li>
+		</ol>
+		Si raccomanda ancora una volta di effettuare il backup e di consultare la 
+		<a href="https://docs.djangoproject.com/en/1.3/ref/django-admin/#syncdb">documentazione relativa ai comandi di amministrazione di Django</a> 
+		per minimizzare gli eventuali rischi di perdita di dati.
+		</p>
+
+		<h2 id="gestione-del-codice-sorgente-version-control">Gestione del codice sorgente (Version Control)</h2>
+
+		<p>Tutto il codice dell’applicazione, compresi i template HTML, è gestito con <a href="http://git-scm.com/">git</a> ed è raccolto in un <a href="https://github.com/b-vast/Biblioteca_IISCurcio">repository su GitHub</a>.
+		In questo modo, è possibile lavorare sul codice e successivamente spostarlo in produzione, tenendo traccia delle e modifiche consentendo anche il loro annullamento.
+		Il database non &egrave; contenuto nel repository, dato che viene creato durante la prima esecuzione dell'applicazione.
+		</p>
+
+		<h2 id="note-sulla-sicurezza">Note sulla sicurezza</h2>
+
+		<p>Il sistema è progettato per essere eseguito ed utilizzato solamente da parte di addetti alla biblioteca autorizzati, ed <strong>esclusivamente all’interno della rete locale</strong>. Non è presente alcuna forma di autenticazione e autorizzazione degli utenti.</p>
+
+		<p>Se lo si ritiene opportuno, è possibile configurare il server web per garantire l’accesso solo ad alcuni (o a nessuno) dei nodi della rete.</p>
+
+		<p>Nel caso si ritenga utile l’istituzione di un sistema di autorizzazione/autenticazione per gli utenti del sistema, e ci si voglia cimentare nella sua implementazione, si tenga presente che Django fornisce già la maggior parte componenti necessari, con la relativa documentazione.</p>
+
+
+
+        </div>
+
+        <footer>
+            <p id='sign'>
+                <span class='date'>22-10-2012</span> 
+                :
+                <span class ='name'>Sebastiano Barrera</span>
+                 - I.I.S. "G.Curcio"
+            </p>
+        </footer>
+
+    </body>
+</html>
